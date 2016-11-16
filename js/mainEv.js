@@ -9,15 +9,10 @@ var Musikki_AppKey="c748d725e8b3391af04d45896c196e8d";
 //VARIABLES*//////////////////////////////////////////////////////////////////////////////////////////////////////////
 var dataArtist;
 var bandToSearch="the beatles";
-var searchResult;
+
 
 
 //SEARCH BOX//////////////////////////////////////////////////////////////////////////////////////////////////////////
-var searchText;
-//d3.select("#band-search").on("change", function() { updateVisualization() });
-//d3.select("#btn-update").on("click", function() { updateVisualization() });
-
-
 var defaultText = "Search...";
 var searchBox;
 
@@ -38,8 +33,6 @@ function dateFilter() {
     return false;
 };
 
-
-
 //VISUALIZATION01/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -52,12 +45,11 @@ function loadData() {
 
     //LOAD JSON FROM API//
     //d3.json("https://music-api.musikki.com/v1/artists/100000093?appid="+Musikki_AppId+"&appkey="+Musikki_AppKey+"",
-    d3.json("https://music-api.musikki.com/v1/artists?q=[artist-name:"+searchBox+"]&appkey="+Musikki_AppKey+"&appid="+Musikki_AppId,
+    d3.json("https://music-api.musikki.com/v1/artists?q=[artist-name:"+/*searchBox*/bandToSearch+"]&appkey="+Musikki_AppKey+"&appid="+Musikki_AppId,
         function(error,jsonData){
             console.log(jsonData);
 
             dataArtist=jsonData;
-
 
 
 
@@ -77,11 +69,18 @@ function updateVisualization() {
     showBandInfo(dataArtist);
 }
 
+
+
 //UPDATE VISUALIZATION FUNCTION///////////////////////////////////////////////////////////////////////////////////////
 function showBandInfo(d){
     //VARIABLES
     var foundationyear2;
     var bandMusicGenre2;
+    var bandCurrentLabel;
+
+    //CHECK IF NULL LABEL
+    if(d.results[0].current_labels == null){bandCurrentLabel="n/a"}
+    else{ bandCurrentLabel=d.results[0].current_labels[0].name};
 
     //CHECK IF NULL FOUNDATION YEAR
     if(d.results[0].dates == null){foundationyear2="n/a"}
@@ -99,6 +98,7 @@ function showBandInfo(d){
         "<h2><b>" + d.results[0].name +/*"</b>/ Test Search: "+ searchBox +*/"</h2>" +
             "<p><b>"+"- Foundation: </b>"+ foundationyear2 +"</p>"+
             "<p><b>"+"- Music Genre: </b>"+bandMusicGenre2 +"</p>"+
+            "<p><b>"+"- Current Label: </b>"+bandCurrentLabel +"</p>"+
             "<img src="+d.results[0].image+" alt="+d.results[0].name+" style=width:200px;height:200px;>"
     ;
 }

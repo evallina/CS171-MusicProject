@@ -37,7 +37,7 @@ p{
     font-weight: normal;
     line-height: 25px;
 
-    padding-left: 80px;
+    padding-left: 0px;
 }
 
 strong{
@@ -122,25 +122,7 @@ strong{
 
 }
 
-.africaIntro2{
-    font-size: 50px;
-    font-weight: bold;
-    text-align: center;
-    color:rgb(255,255,255);
-    /*background-color: rgb(70,70,70);*/
 
-    background-image: url("img/01_Cover_2.jpg");
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-bottom: 25%;
-    padding-top: 25%;
-
-    padding-left: 7%;
-    padding-right: 7%;
-
-}
 
 #wedo{
     font-size: 30px;
@@ -254,11 +236,7 @@ h4{
 /***************/
 /*  BAR CHART  */
 /***************/
-.navbar{
-    font-family: 'Roboto', sans-serif;
-    color: rgb(250,250,250);
-    background: rgb(20,20,20);
-}
+
 
 .active{
     background: rgb(150,150,150);
@@ -271,8 +249,31 @@ h4{
 .navbar {height:5px !important}
 
 */
-.sr-only{height: 5px}
-.navbar{height: 5px}
+#logo-navbar{
+    color:rgb(255,255,255);
+}
+
+.navbar-inner {
+    min-height: 0px;
+}
+
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 10px;
+    height: 30px;
+    padding-top: 10px;
+
+}
+.navbar{
+    font-family: 'Roboto', sans-serif;
+    color: rgb(250,250,250);
+    background: rgb(20,20,20);
+    /*height: 5px;*/
+    min-height: 30px;
+    border: 0;
+}
+
+.sr-only{height: 0px}
 
 /******************/
 /*   SEARCH BOX   */
@@ -326,4 +327,46 @@ h6{
     padding-top: 10%;
     padding-bottom: 2%;
     color: rgb(255,255,255);
+}
+
+
+/**********************/
+/*   GENRE SELECTOR   */
+/**********************/
+
+#GenreSelectorBox{
+    padding-top: 20%;
+    padding-bottom: 20%;
+    padding-left: 25%;
+    padding-right: 25%;
+
+    background-image: url("img/KarinaCarvalho_01.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#custom-dropdown{
+    border: solid 1px #fff;
+    border-radius: 6px;
+    background-color: #fff;
+    width:600px;
+    text-align: center;
+}
+#custom-dropdown select{
+    border: 0;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+
+}
+
+#custom-dropdown .form-control {
+    width:600px;
+}
+
+#genre-selector .form-group{
+
 }
