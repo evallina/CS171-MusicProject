@@ -1,6 +1,3 @@
-/**
- * Created by Enol Vallina on 11/14/2016.
- */
 
 //API CREDENTIALS MUSIKKI/////////////////////////////////////////////////////////////////////////////////////////////
 var Musikki_AppId="c1e2711f8daf4c2ecaf1290bd66130e6";
@@ -8,13 +5,15 @@ var Musikki_AppKey="c748d725e8b3391af04d45896c196e8d";
 
 //VARIABLES*//////////////////////////////////////////////////////////////////////////////////////////////////////////
 var dataArtist;
-var bandToSearch="the beatles";
 
+var artistMKid; //id to identify other Band related searches.
 
 
 //SEARCH BOX//////////////////////////////////////////////////////////////////////////////////////////////////////////
 var defaultText = "Search...";
 var searchBox;
+var bandToSearch="Beatles";
+//var bandToSearch=searchBox;
 
 // listen to date filter form
 $(document).ready(function() {
@@ -50,6 +49,7 @@ function loadData() {
             console.log(jsonData);
 
             dataArtist=jsonData;
+            artistMKid= dataArtist.results[0].mkid;
 
 
 
