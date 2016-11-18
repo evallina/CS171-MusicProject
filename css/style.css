@@ -1,5 +1,20 @@
 /* YOUR CSS STYLES */
+#info-band{
+    background: rgb(180,180,180);
+    padding-bottom: 2%;
+}
+#band-badge{
+    background: rgb(220,220,220);
 
+}
+#band-history{
+    background: rgb(180,180,180);
+    padding-bottom: 2%;
+}
+#band-map{
+    background: rgb(220,220,220);
+    padding-bottom: 2%;
+}
 
 
 
