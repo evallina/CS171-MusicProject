@@ -1,4 +1,4 @@
-
+/*
 $.getJSON("http://api.songkick.com/api/3.0/events.json?location=clientip&apikey=ME5jCBPTyD3l4BW8&jsoncallback=?",
     function(data){
         createVisualization(data);
@@ -18,3 +18,4 @@ function createVisualization(data) {
         $("#data").append("<p><b>Popularity: </b>" + events[i]["popularity"] + "</p>");
     }
 }
+*/

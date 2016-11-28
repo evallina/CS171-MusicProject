@@ -8,7 +8,7 @@ var margin = {top: 40, right: 0, bottom: 10, left: 60};
 var width = 1000 - (margin.left + margin.right),
     height = 600 - (margin.top + margin.bottom);
 
-var height2=height/2;
+var height2 = height / 2;
 
 //SVG AREA/////////////////////////////////////////////////////////////////////////////////////////////
 var svgBandBadge = d3.select("#band-badge").append("svg")
@@ -19,17 +19,6 @@ var svgBandBadge = d3.select("#band-badge").append("svg")
     ;
 
 // VARIABLES/////////////////////////////////////////////////////////////////////////////////////
-// DATA
-var dataArtist2;
-var artistMKid2;
-
-var dataBandAbums;
-var dataBandYearsActive;
-var dataBandGroupMembers;
-var dataBandSongs;
-var dataBandPopularity;
-
-// VIZ VALUES
 var BandYearsActive;
 var BandPopularity;
 var BandSongsProduced;
@@ -38,11 +27,11 @@ var BandGroupMembers;
 
 
 //SETUP SCALES/////////////////////////////////////////////////////////////////////////////////////////
-var yBandYearsActive    = d3.scale.linear().range([height2,0]);
-var yBandPopularity     = d3.scale.linear().range([height2,0]);
-var yBandSongsProduced  = d3.scale.linear().range([height2,0]);
-var yBandAlbumsProduced = d3.scale.linear().range([height2,0]);
-var yBandGroupMembers   = d3.scale.linear().range([height2,0]);
+var yBandYearsActive = d3.scale.linear().range([height2, 0]);
+var yBandPopularity = d3.scale.linear().range([height2, 0]);
+var yBandSongsProduced = d3.scale.linear().range([height2, 0]);
+var yBandAlbumsProduced = d3.scale.linear().range([height2, 0]);
+var yBandGroupMembers = d3.scale.linear().range([height2, 0]);
 
 
 //MAX VALUES
@@ -53,61 +42,29 @@ var MaxValueAlbumsBand;
 
 
 // INITIALIZE DATA/////////////////////////////////////////////////////////////////////////////////////
-loadData2();
+//loadData2();
 
 //BOX SELECTION////////////////////////////////////////////////////////////////////////////////////////
 
 
-//LOAD DATA ///////////////////////////////////////////////////////////////////////////////////////////
-function loadData2() {
-    //LOAD JSON FROM API//
-    d3.json("https://music-api.musikki.com/v1/artists?q=[artist-name:"+/*searchBox*/bandToSearch+"]&appkey="+Musikki_AppKey+"&appid="+Musikki_AppId,
-        function(error,jsonData){
-            //Find the MKID For the Band
-            artistMKid2= jsonData.results[0].mkid;
-
-            //LOAD SPECIFIC DATA FOR VISUALIZATION ABOUT THE BAND
-            queue()
-                //.defer(d3.json, "https://music-api.musikki.com/v1/artists?q=[artist-name:"+/*searchBox*/bandToSearch+"]&appkey="+Musikki_AppKey+"&appid="+Musikki_AppId)
-                //Info Request
-                .defer(d3.json, "https://music-api.musikki.com/v1/artists/"+artistMKid2+"?&appkey="+Musikki_AppKey+"&appid="+Musikki_AppId)
-                //Releases Request
-                .defer(d3.json, "https://music-api.musikki.com/v1/artists/"+artistMKid2+"/releases/summary?&appkey="+Musikki_AppKey+"&appid="+Musikki_AppId)
-                //Songs
-                .defer(d3.json, "https://music-api.musikki.com/v1/artists/"+artistMKid2+"/songs?&appkey="+Musikki_AppKey+"&appid="+Musikki_AppId)
-
-                .await(function (error, dataBandInfo, dataBandReleases, dataBandSongs) {
-                    //Test Data on Console
-                    console.log("Band Musikki ID"); console.log(artistMKid);
-                    console.log("Band Info"); console.log(dataBandInfo);
-                    console.log("Band Releases"); console.log(dataBandReleases);
-                    console.log("Band Songs"); console.log(dataBandSongs);
-
-                    // PROCESS DATA
-                    dataBandAbums=dataBandReleases;
-
-                    //DRAW VISUALIZATION FOR THE FIRST TIME
-                    updateBandBadge();
-                });
-        });}
-
 
 
 //BAND BADGE//////////////////////////////////////////////////////////////////////////////////////////////////////////
-function updateBandBadge(){
+function updateBandBadge() {
     console.log("updateBandBadge //////////////////////////////////// ");
     console.log(dataBandAbums);
 
     //SCALES & VALUES/////////////////////////////////////////////////////////////////////////////////////////////////
 
     // VALUES
-  BandAlbumsProduced= (dataBandAbums.album.compilation)+
-        (dataBandAbums.album.live)+
-        (dataBandAbums.album.soundtrack)+
-        (dataBandAbums.album.studio);
+    BandAlbumsProduced = (dataBandAbums.album.compilation) +
+        (dataBandAbums.album.live) +
+        (dataBandAbums.album.soundtrack) +
+        (dataBandAbums.album.studio)
+    ;
 
     // SCALES
-    yBandAlbumsProduced.domain([MaxValueAlbumsBand,1]);
+    yBandAlbumsProduced.domain([MaxValueAlbumsBand, 1]);
 
 
     //BARS TEST///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -117,24 +74,19 @@ function updateBandBadge(){
     barAlbums.enter()
         .append("rect")
         .attr("class", "barAlbums")
-        .attr("x",  width/2)
-        .attr("y", function(d) { return height2 - yBandAlbumsProduced(d.album.live); })
+        .attr("x", width / 2)
+        .attr("y", function (d) {
+            return height2 - yBandAlbumsProduced(d.album.live);
+        })
         .attr("fill", "rgb(20,20,20)")
 
     barAlbums.transition().duration(1500)
         .attr("width", 200)
-        .attr("height", function(d){ return yBandAlbumsProduced(d.album.live);})
+        .attr("height", function (d) {
+            return yBandAlbumsProduced(d.album.live);
+        })
     ;
 
     barAlbums.exit().remove();
-
-
-
-
-
-
-
-
-
 
 }
