@@ -23,35 +23,14 @@ function dateFilter() {
     // get values from form
     searchBox=document.getElementById("band-search").value;
 
+
     // redraw chart
-    updateVisualization();
-    loadDataSK();
+    //loadDataSK();
     loadDataMK();
+    //updateBandBadge2();
     // make sure the click doesn't reload the page!!
     return false;
 };
-
-//VISUALIZATION01/////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-//INITIATE DATA///////////////////////////////////////////////////////////////////////////////////////
-//loadData2();
-
-
-
-
-//UPDATE VISUALIZATION FUNCTION///////////////////////////////////////////////////////////////////////////////////////
-function updateVisualization() {
-
-    //Update Search Text
-    //searchResult = d3.select("#band-search").property("text");
-
-    //showBandInfo(dataArtist);
-    //showBandInfo()
-}
-
-
 
 //UPDATE VISUALIZATION FUNCTION///////////////////////////////////////////////////////////////////////////////////////
 function showBandInfo(){

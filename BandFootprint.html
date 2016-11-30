@@ -78,6 +78,36 @@
         <div class="col-lg-12 col-md-12 col-sm12" id="band-badge">Band Badge</div>
     </div>
     </br>
+
+
+    <div class="container">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="data-type2">Sort by...</label>
+                <select class="form-control input-sm" id="data-type2">
+                    <option value="Code"> Region</option>
+                    <option value="UN_Population"> Population</option>
+                    <option value="Improved_Sanitation_2015"> Improved Sanitation</option>
+                    <option value="Improved_Water_2015"> Improved Water</option>
+                </select>
+                <label for="data-type3">Highlight...</label>
+                <select class="form-control input-sm" id="data-type3">
+                    <option value="none"> None</option>
+                    <option value="African"> Africa</option>
+                    <option value="European"> Europe</option>
+                    <option value="South-East Asia"> South-East Asia</option>
+                </select>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12" id="chart-area"></div>
+            <div class="col-lg-12 col-md-12 col-sm-12" id="chart-info"></div>
+        </div>
+    </div>
+
+
+
+    </br>
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm12" id="band-history">Band History</div>
     </div>
@@ -162,7 +192,8 @@
 <script src="js/bandSearch.js"></script>
 
 <!-- Load data, Band Visualization -->
-<script src="js/band-badge.js"></script
+
+<script src="js/band-badge.js"></script>
 <script src="js/band-history.js"></script>
 <script src="js/band-map.js"></script>
 
