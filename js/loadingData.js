@@ -135,9 +135,9 @@ function loadDataMK() {
 }
 
 function createVis() {
-    showBandInfo();
 
-    updateBandBadge2();
+    showBandInfo();
+    updateBandBadge();
 
 
 }
