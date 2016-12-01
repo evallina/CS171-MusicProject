@@ -16,7 +16,34 @@
     padding-bottom: 2%;
 }
 
+/* BAND BADGE */
+.textBadge1{
+    font-family: 'Roboto Black';
+    font-size: 30px;
+    /*font-weight: bold;*/
+    fill:"rgb(20,20,20)";
 
+}
+.textBadge2{
+    font-family: 'Roboto';
+    font-size: 10px;
+    font-weight: bold;
+    fill:"rgb(20,20,20)";
+
+}
+.textBadge12{
+    font-family: 'Roboto Black';
+    font-size: 18px;
+    fill:"rgb(20,20,20)";
+
+}
+.textBadge22{
+    font-family: 'Roboto';
+    font-size: 10px;
+    font-weight: bold;
+    fill:"rgb(20,20,20)";
+
+}
 
 
 /* WEB STYLES TEMP */
