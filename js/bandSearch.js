@@ -18,6 +18,8 @@ $(document).ready(function() {
     $("#filter-submit").click(dateFilter);
 });
 
+
+
 // filter date range based on input
 function dateFilter() {
     // get values from form

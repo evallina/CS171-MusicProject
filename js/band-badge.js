@@ -61,6 +61,7 @@ var barMembers_txt2= svg2.append("text");
 var barYearsActive_txt= svg2.append("text");
 var barYearsActive_txt2= svg2.append("text");
 
+var txtTest;
 var barConcertsYear_txt= svg2.append("text");
 var barConcertsYear_txt2= svg2.append("text");
 
@@ -153,9 +154,9 @@ var updateBandBadge= function() {
         .attr("height",yBandAlbumsProduced(bandAlbumsTotal))
     ;
     //text..............................................................................
-    barAlbums2_txt.remove();
-    barAlbums2_txt2.remove();
-    textBadgeGenerator(barAlbums2_txt,barAlbums2_txt,0,yBandAlbumsProduced(bandAlbumsTotal),bandAlbumsTotal,"Total Albums");
+
+    txtTest=textBadgeGenerator(barAlbums2_txt,barAlbums2_txt2,0,yBandAlbumsProduced(bandAlbumsTotal),bandAlbumsTotal,"Total Albums");
+
 
     //BARS SONGS//////////////////////////////////////////////////
     barSongs.remove();
@@ -175,9 +176,7 @@ var updateBandBadge= function() {
         .attr("height",yBandSongsProduced(dataBandSongs))
     ;
     //text..............................................................................
-    barSongs_txt.remove();
-    barSongs_txt2.remove();
-    textBadgeGenerator(barSongs_txt,barSongs_txt,90,yBandSongsProduced(dataBandSongs),dataBandSongs,"Total Songs");
+    textBadgeGenerator(barSongs_txt,barSongs_txt2,90,yBandSongsProduced(dataBandSongs),dataBandSongs,"Total Songs");
 
 
 
@@ -199,8 +198,6 @@ var updateBandBadge= function() {
         .attr("height",yBandGroupMembers(bandMembersTotal))
     ;
     //text..............................................................................
-    barMembers_txt.remove();
-    barMembers_txt2.remove();
     textBadgeGeneratorSplit(barMembers_txt,barMembers_txt2,180,yBandGroupMembers(bandMembersTotal),bandMembersTotal,"Members",0);
 
 
@@ -223,8 +220,6 @@ var updateBandBadge= function() {
         .attr("height",yBandYearsActive(bandYearsActiveTotal))
     ;
     //text..............................................................................
-    barYearsActive_txt.remove();
-    barYearsActive_txt2.remove();
     textBadgeGeneratorSplit(barYearsActive_txt,barYearsActive_txt2,180,yBandYearsActive(bandYearsActiveTotal),bandYearsActiveTotal,"Years Active",1);
 
     //BARS CONCERTS YEAR//////////////////////////////////////////////////
@@ -245,9 +240,7 @@ var updateBandBadge= function() {
         .attr("height",yBandConcertsYear(bandConcertsLastYear))
     ;
     //text..............................................................................
-    barConcertsYear_txt.remove();
-    barConcertsYear_txt2.remove();
-    textBadgeGenerator(barConcertsYear_txt,barConcertsYear_txt2,270,yBandConcertsYear(bandConcertsLastYear),bandConcertsLastYear,"Total Concerts Last Year");
+    textBadgeGenerator(barConcertsYear_txt,barConcertsYear_txt2,270,yBandConcertsYear(bandConcertsLastYear),bandConcertsLastYear,"Concerts Last Year");
 
 
     //CENTER CIRCLE////////////////////////////////////////////////
@@ -264,8 +257,6 @@ var updateBandBadge= function() {
     ;
     */
 
-
-
     console.log("updateBandBadge End ////////////////////////////////////////////// ");
 }
 
@@ -273,7 +264,6 @@ var updateBandBadge= function() {
 //TEXT FUNCTION
 function textBadgeGenerator(svgVariable,svgVariable2,rot,scaleData,dataValue,textBadge){
 
-    //texts..........................................................
     //svgVariable.remove();
     svgVariable=svg2.append("text");
     svgVariable
@@ -284,6 +274,7 @@ function textBadgeGenerator(svgVariable,svgVariable2,rot,scaleData,dataValue,tex
         .text(dataValue)
     ;
 
+    //svgVariable2.remove();
     svgVariable2=svg2.append("text");
     svgVariable2
         .attr("class", "textBadge2")
@@ -292,12 +283,10 @@ function textBadgeGenerator(svgVariable,svgVariable2,rot,scaleData,dataValue,tex
         .attr("transform", "translate("+(widthhalf)+","+heighthalf+") rotate("+(rotBadge+rot)+")")
         .text(textBadge)
     ;
-
 }
 
 function textBadgeGeneratorSplit(svgVariable,svgVariable2,rot,scaleData,dataValue,textBadge,split){
 
-    //texts..........................................................
     svgVariable.remove();
     svgVariable=svg2.append("text");
 
