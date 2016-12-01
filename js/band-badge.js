@@ -287,6 +287,7 @@ function textBadgeGenerator(svgVariable,svgVariable2,rot,scaleData,dataValue,tex
 
 function textBadgeGeneratorSplit(svgVariable,svgVariable2,rot,scaleData,dataValue,textBadge,split){
 
+    //Data Text
     svgVariable.remove();
     svgVariable=svg2.append("text");
 
@@ -298,7 +299,7 @@ function textBadgeGeneratorSplit(svgVariable,svgVariable2,rot,scaleData,dataValu
         .text(dataValue)
     ;
 
-    //barAlbums2_txt.transition().duration(5500);
+    //Small Text
     svgVariable2.remove();
     svgVariable2=svg2.append("text");
 
