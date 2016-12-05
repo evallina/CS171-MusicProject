@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Custom CSS code -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/leaflet.css">
 </head>
 <body>
 <!-- Navigation Bar-->
@@ -78,6 +79,11 @@
 <!--VISUALIZATIONS ////////////////////////////////////////////////////////////////////////////////////////// -->
 </br>
 <p>(*test API: Musikki)////////////////////////////////////////////////////////////////////////////////</p>
+<!--
+</br>
+<div id="venue-map">Genre Map Test</div>
+</br> -->
+
 <div class="container">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm12" id="info-band">...Please Search for a Band</div>
@@ -87,34 +93,15 @@
         <div class="col-lg-12 col-md-12 col-sm12" id="band-badge">Band Badge</div>
     </div>
     </br>
+    </br>
+    </br>
 
-
-    <div class="container">
-        <form class="form-inline">
-            <div class="form-group">
-                <label for="data-type2">Sort by...</label>
-                <select class="form-control input-sm" id="data-type2">
-                    <option value="Code"> Region</option>
-                    <option value="UN_Population"> Population</option>
-                    <option value="Improved_Sanitation_2015"> Improved Sanitation</option>
-                    <option value="Improved_Water_2015"> Improved Water</option>
-                </select>
-                <label for="data-type3">Highlight...</label>
-                <select class="form-control input-sm" id="data-type3">
-                    <option value="none"> None</option>
-                    <option value="African"> Africa</option>
-                    <option value="European"> Europe</option>
-                    <option value="South-East Asia"> South-East Asia</option>
-                </select>
-            </div>
-        </form>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12" id="chart-area"></div>
-            <div class="col-lg-12 col-md-12 col-sm-12" id="chart-info"></div>
-        </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm12" id="venue-map">Genre Map Test</div>
     </div>
-
-
+    </br>
+    </br>
+    </br>
 
     </br>
     <div class="row">
@@ -187,6 +174,9 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/queue.min.js"></script>
 <script src="js/topojson.js"></script>
+
+<script src="js/leaflet.js"></script>
+
 <script src="js/d3.min.js"></script>
 <script src="js/d3.tip.js"></script>
 
@@ -202,9 +192,10 @@
 
 <!-- Load data, Band Visualization -->
 
-<script src="js/band-badge.js"></script>
-<script src="js/band-history.js"></script>
-<script src="js/band-map.js"></script>
+<script src="js/band-badge.js">     </script>
+<script src="js/band-history.js">   </script>
+<script src="js/band-map.js">       </script>
+<script  src="js/genre-city-map.js">   </script>
 
 <script src="js/textRef.js"></script>
 <!--<script src="js/main.js"></script>-->
