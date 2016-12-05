@@ -52,8 +52,12 @@ var dataCityVenues2;
 
 var nResults;
 var skNYresults=[];
-var skNYresultsXML;
-//var skNYresults2=[];
+var skNYresults_dates=[];
+
+var skNYresults_startDate="2016-12-06";
+var skNYresults_endDate="2016-12-08";
+
+
 var skNYresults_time=[];
 
 var skNYresults_VenueName=[];
@@ -68,6 +72,11 @@ var skNYvenue=[];
 
 var events = [];
 
+/////////////////////////////////////////////////////////////////////////////////
+
+var parseDate = d3.time.format("%Y-%m-%d").parse;
+
+/////////////////////////////////////////////////////////////////////////////////
 
 loadDataSKVenues();
 
@@ -107,9 +116,9 @@ function loadDataSKVenues() {
             })
         }
         console.log("Compilation Results///////////////////////////////////////////////////////////////");
-        //console.log(skNYresults);
-        /
-        console.log(skNYresultsXML);
+        console.log(skNYresults);
+
+        //console.log(skNYresultsXML);
         console.log("Artist Playing Name");
         console.log(skNYresults_ArtistName);
 
@@ -122,10 +131,11 @@ function loadDataSKVenues() {
 
         //CREATE VIZs
 
+
         // create a map of boston
 
-        var venueMap = new VenueMap("venue-map", skNYresults, [40.724126, -73.984972]);
-
+        //var venueMap = new VenueMap("venue-map", skNYresults, [40.724126, -73.984972]);
+        //createVis2();
         })
 }
 
@@ -232,6 +242,9 @@ function loadDataMK() {
                     //DRAW VISUALIZATION FOR THE FIRST TIME ///////////////////////////////////////////////////////////
                     createVis();
 
+                    createVisMap();
+                    //var venueMap = new VenueMap("venue-map", skNYresults, [40.724126, -73.984972]);
+
                 });
         });
 }
@@ -241,6 +254,24 @@ function createVis() {
     showBandInfo();
     updateBandBadge();
 
+
+}
+function createVisMap(){
+    //DATA MANIPULATING
+    for(var i=0; i<skNYresults.length;i++){
+        // Date parser to convert strings to date objects
+        var skDate=parseDate(skNYresults[i].start.date);
+        var dataStart=parseDate(skNYresults_startDate);
+        var dataEnd=parseDate(skNYresults_endDate);
+        //console.log("parsed date", skDate);
+        if (skDate> dataStart && skDate < dataEnd){
+            skNYresults_dates.push(skNYresults[i]);
+        }
+    }
+
+
+    //DRAW MAP
+    var venueMap = new VenueMap("venue-map", skNYresults_dates, [40.724126, -73.984972]);
 
 }
 
