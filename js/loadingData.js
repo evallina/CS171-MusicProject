@@ -39,8 +39,97 @@ var bandStartYear;
 var bandEndYear;
 
 //VISUALIZATION VARIABLES
-
 var test;
+
+//GEO VARIABLES CITY
+//City 1 -> 40°43'26.9"N 73°59'05.9"W / 40.724126, -73.984972
+var city1_lat= 40.724126;
+var city1_lng= -73.984972;
+
+var metroAreaIDNY=7644;
+var dataCityVenues;
+var dataCityVenues2;
+
+var nResults;
+var skNYresults=[];
+var skNYresultsXML;
+//var skNYresults2=[];
+var skNYresults_time=[];
+
+var skNYresults_VenueName=[];
+var skNYresults_location_lat=[];
+var skNYresults_location_lng=[];
+var skNYresults_venueId=[];
+
+var skNYresults_ArtistName=[];
+var skNYresults_artistId=[];
+
+var skNYvenue=[];
+
+var events = [];
+
+
+loadDataSKVenues();
+
+
+
+
+function loadDataSKVenues() {
+    d3.json("http://api.songkick.com/api/3.0/metro_areas/"+metroAreaIDNY+"/calendar.json?apikey="+Songkick_APIkey, function(error, jsonDataSK){
+        nResults= Math.round((jsonDataSK.resultsPage.totalEntries)/(jsonDataSK.resultsPage.perPage));
+        console.log("Songkick Request ////////////////////////// VENUES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        console.log(nResults);
+
+        for(var i=1;i<nResults;i++){
+            d3.json("http://api.songkick.com/api/3.0/metro_areas/"+metroAreaIDNY+"/calendar.json?apikey="+Songkick_APIkey+"&page="+i, function(error, jsonDataSK2){
+                //console.log(jsonDataSK2);
+                var nArrayResults=jsonDataSK2.resultsPage.results.event.length;
+                for(var j=0;j<nArrayResults;j++){
+
+                    var xx=jsonDataSK2.resultsPage.results.event[j].performance[0];
+
+                    if(xx != null){
+                        skNYresults.push(jsonDataSK2.resultsPage.results.event[j]);
+                        skNYresults_time.push(jsonDataSK2.resultsPage.results.event[j].start.date);
+
+                        //Artist Data
+                        skNYresults_ArtistName.push(jsonDataSK2.resultsPage.results.event[j].performance[0].artist.displayName);
+                        skNYresults_artistId.push(jsonDataSK2.resultsPage.results.event[j].performance[0].artist.id);
+
+                        //Venue Data
+                        skNYresults_venueId.push(jsonDataSK2.resultsPage.results.event[j].venue.id);
+                        skNYresults_location_lat.push(jsonDataSK2.resultsPage.results.event[j].location.lat);
+                        skNYresults_location_lng.push(jsonDataSK2.resultsPage.results.event[j].location.lng);
+                        skNYresults_VenueName.push(jsonDataSK2.resultsPage.results.event[j].venue.displayName)
+
+                    }
+                }
+            })
+        }
+        console.log("Compilation Results///////////////////////////////////////////////////////////////");
+        //console.log(skNYresults);
+        /
+        console.log(skNYresultsXML);
+        console.log("Artist Playing Name");
+        console.log(skNYresults_ArtistName);
+
+        console.log("VenueLocation");
+        console.log(skNYresults_venueId);
+
+        console.log("VenueLocation: LAT/LNG");
+        console.log(skNYresults_location_lat);
+        console.log(skNYresults_location_lng);
+
+        //CREATE VIZs
+
+        // create a map of boston
+
+        var venueMap = new VenueMap("venue-map", skNYresults, [40.724126, -73.984972]);
+
+        })
+}
+
+
 //LOAD DATA ///////////////////////////////////////////////////////////////////////////////////////////
 function loadDataMK() {
     //LOAD JSON FROM SPOTIFY ////////////////////////////////////////////////////////////////////////
@@ -55,17 +144,29 @@ function loadDataMK() {
         songkickdata=jsonDataSongkick.resultsPage.results.artist[0];
         artistSKid=songkickdata.id;
         queue()
-            //Request Artis Gigography
+            //Request Artist Gigography
             .defer(d3.json,"http://api.songkick.com/api/3.0/artists/"+artistSKid+"/gigography.json?apikey="+Songkick_APIkey)
             //Filter In the last Year
             .defer(d3.json,"http://api.songkick.com/api/3.0/artists/"+artistSKid+"/gigography.json?apikey="+Songkick_APIkey+"&min_date=2015-10-01&max_date=2016-10-01")
+            //Search Events in Metro Area
+            //.defer(d3.json,"http://api.songkick.com/api/3.0/search/locations.json?location=geo:"+city1_lat+","+city1_long+"&apikey="+Songkick_APIkey)
+            .defer(d3.json,"http://api.songkick.com/api/3.0/metro_areas/"+metroAreaIDNY+"/calendar.json?apikey="+Songkick_APIkey+"&page=1")
 
-            .await(function(error,SKdataArtistGigo, SKdataLastYear){
+            .await(function(error,SKdataArtistGigo, SKdataLastYear, SKdataVenuesCity){
                 console.log("SK Artist Gigography");
                 console.log(SKdataArtistGigo);
                 console.log("SK Concerts Last Year");
                 console.log(SKdataLastYear);
+                console.log("SK Concerts in Metro");
+                console.log(SKdataVenuesCity.resultsPage);
+
+                dataCityVenues=SKdataVenuesCity.resultsPage;
+                dataCityVenues2=SKdataVenuesCity;
                 bandConcertsLastYear=SKdataLastYear.resultsPage.totalEntries;
+
+
+
+
             })
     });
 
@@ -130,6 +231,7 @@ function loadDataMK() {
 
                     //DRAW VISUALIZATION FOR THE FIRST TIME ///////////////////////////////////////////////////////////
                     createVis();
+
                 });
         });
 }
