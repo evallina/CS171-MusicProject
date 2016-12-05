@@ -59,9 +59,11 @@ VenueMap.prototype.wrangleData = function() {
     // Currently no data wrangling/filtering needed
     vis.displayData = vis.data;
 
+
+
+    //console.log("wrangleData", vis.displayData);
     // Update the visualization
     vis.updateVis();
-
 }
 
 
@@ -84,7 +86,7 @@ VenueMap.prototype.wrangleData = function() {
 VenueMap.prototype.updateVis = function() {
     var vis = this;
 
-    console.log(this.displayData);
+    console.log("updateVis",vis.displayData);
 
     // write # of stations
     /*$('#station-count')
@@ -94,19 +96,19 @@ VenueMap.prototype.updateVis = function() {
     vis.pinGroup = L.layerGroup()
         .addTo(vis.map);
 
+    //for( var i=0; )
+
+
     // draw 1 pin per station
     vis.displayData.forEach(function(d) {
-        /*
-         var lat = +d.lat;
-         var long = +d.long;
-        */
+        //console.log("foreach", d.displayName);
         var lat = +d.location.lat;
         var lng = +d.location.lng;
 
         var popupContent = "<strong>" + d.displayName + "</strong><br>" + d.venue.displayName;
-
+        //console.log("foreach", popupContent);
         var marker = L.marker([d.location.lat, d.location.lng])
-        //var marker = L.marker([lat, lng])
+        //var marker = L.marker([40.732226,-74.001304])
             .bindPopup(popupContent);
         vis.pinGroup.addLayer(marker);
     });
