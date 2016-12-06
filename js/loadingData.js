@@ -258,22 +258,23 @@ function createVis() {
 }
 function createVisMap(){
     //DATA MANIPULATING
+    /*
     for(var i=0; i<skNYresults.length;i++){
         // Date parser to convert strings to date objects
         var skDate=parseDate(skNYresults[i].start.date);
-        var dataStart=parseDate(skNYresults_startDate);
-        var dataEnd=parseDate(skNYresults_endDate);
+
+        var dataStart=parseDate(minDate);
+        var dataEnd=parseDate(maxDate);
         //console.log("parsed date", skDate);
         if (skDate> dataStart && skDate < dataEnd){
             skNYresults_dates.push(skNYresults[i]);
         }
-    }
+    }*/
 
 
     //DRAW MAP
-    var venueMap = new VenueMap("venue-map", skNYresults_dates, [40.724126, -73.984972]);
+    //var venueMap = new VenueMap("venue-map", skNYresults_dates, [40.724126, -73.984972]);
+    var venueMap = new VenueMap("venue-map", skNYresults, [40.724126, -73.984972]);
 
 }
 
-
-//PROCESSING DATA ///////////////////////////////////////////////////////////////////////////////////////////
