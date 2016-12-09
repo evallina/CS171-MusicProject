@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1446fe78-490b-4b03-82ac-f183bb31b272" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/imageicons/marker-icon-2x.png" afterPath="$PROJECT_DIR$/css/imageicons/marker-icon-2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/imageicons/genres/marker-icon.png" afterPath="$PROJECT_DIR$/css/imageicons/genres/marker-icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/imageicons/marker-icon.png" afterPath="$PROJECT_DIR$/css/imageicons/marker-icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BandFootprint.html" afterPath="$PROJECT_DIR$/BandFootprint.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/genre-city-map.js" afterPath="$PROJECT_DIR$/js/genre-city-map.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/loadingData.js" afterPath="$PROJECT_DIR$/js/loadingData.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/time-range-slider.js" afterPath="$PROJECT_DIR$/js/time-range-slider.js" />
     </list>
     <ignored path="Midterm_ev00.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="loadingData.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="loadingData.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/loadingData.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="111" column="110" selection-start-line="111" selection-start-column="110" selection-end-line="111" selection-end-column="110" />
+            <state relative-caret-position="418">
+              <caret line="212" column="32" selection-start-line="212" selection-start-column="32" selection-end-line="212" selection-end-column="32" />
               <folding>
                 <element signature="e#0#49#0" expanded="false" />
               </folding>
@@ -56,15 +53,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="genre-city-map.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="genre-city-map.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/genre-city-map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="616">
-              <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+            <state relative-caret-position="510">
+              <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
               <folding>
-                <marker date="1480992221256" expanded="true" signature="764:770" ph="©" />
-                <marker date="1480992221256" expanded="true" signature="1082:1089" ph="—" />
-                <marker date="1480992221256" expanded="true" signature="1099:1105" ph="©" />
+                <marker date="1481238385634" expanded="true" signature="1022:1028" ph="©" />
+                <marker date="1481238385634" expanded="true" signature="2101:2108" ph="—" />
+                <marker date="1481238385634" expanded="true" signature="2118:2124" ph="©" />
+                <marker date="1481238385634" expanded="true" signature="2473:2480" ph="—" />
+                <marker date="1481238385634" expanded="true" signature="2490:2496" ph="©" />
               </folding>
             </state>
           </provider>
@@ -73,8 +72,8 @@
       <file leaf-file-name="time-range-slider.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/time-range-slider.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+            <state relative-caret-position="146">
+              <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
               <folding>
                 <element signature="n#!!doc;n#timestamp#0" expanded="false" />
               </folding>
@@ -85,8 +84,8 @@
       <file leaf-file-name="BandFootprint.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BandFootprint.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1195">
-              <caret line="100" column="21" selection-start-line="100" selection-start-column="21" selection-end-line="100" selection-end-column="21" />
+            <state relative-caret-position="221">
+              <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -96,7 +95,7 @@
         <entry file="file://$PROJECT_DIR$/js/band-badge.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
-              <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+              <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="55" />
               <folding>
                 <element signature="e#0#49#0" expanded="false" />
               </folding>
@@ -167,9 +166,9 @@
         <option value="$PROJECT_DIR$/js/band-badge.js" />
         <option value="$PROJECT_DIR$/js/time-range-slider.js" />
         <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/js/loadingData.js" />
         <option value="$PROJECT_DIR$/BandFootprint.html" />
         <option value="$PROJECT_DIR$/js/genre-city-map.js" />
+        <option value="$PROJECT_DIR$/js/loadingData.js" />
       </list>
     </option>
   </component>
@@ -180,9 +179,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="width" value="1018" />
-    <option name="height" value="1057" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1066" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -309,15 +309,15 @@
       <workItem from="1479941777888" duration="9199000" />
       <workItem from="1480365092077" duration="8318000" />
       <workItem from="1480386966759" duration="27396000" />
-      <workItem from="1480533088366" duration="84866000" />
+      <workItem from="1480533088366" duration="123989000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="303292000" />
+    <option name="totallyTimeSpent" value="342415000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1018" height="1057" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37446353" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -354,7 +354,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -549,16 +551,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/band-badge.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#49#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/band-history.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -637,42 +629,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/loadingData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="111" column="110" selection-start-line="111" selection-start-column="110" selection-end-line="111" selection-end-column="110" />
-          <folding>
-            <element signature="e#0#49#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/time-range-slider.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+        <state relative-caret-position="146">
+          <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
           <folding>
             <element signature="n#!!doc;n#timestamp#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/band-badge.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#49#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/BandFootprint.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1195">
-          <caret line="100" column="21" selection-start-line="100" selection-start-column="21" selection-end-line="100" selection-end-column="21" />
+        <state relative-caret-position="221">
+          <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/genre-city-map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+        <state relative-caret-position="510">
+          <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
           <folding>
-            <marker date="1480992221256" expanded="true" signature="764:770" ph="©" />
-            <marker date="1480992221256" expanded="true" signature="1082:1089" ph="—" />
-            <marker date="1480992221256" expanded="true" signature="1099:1105" ph="©" />
+            <marker date="1481238385634" expanded="true" signature="1022:1028" ph="©" />
+            <marker date="1481238385634" expanded="true" signature="2101:2108" ph="—" />
+            <marker date="1481238385634" expanded="true" signature="2118:2124" ph="©" />
+            <marker date="1481238385634" expanded="true" signature="2473:2480" ph="—" />
+            <marker date="1481238385634" expanded="true" signature="2490:2496" ph="©" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/loadingData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="212" column="32" selection-start-line="212" selection-start-column="32" selection-end-line="212" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#49#0" expanded="false" />
           </folding>
         </state>
       </provider>
