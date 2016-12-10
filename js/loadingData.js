@@ -14,8 +14,8 @@ var Spotify_APIclient="0670b8e616044845ac7905baac575a4d";
 //Info Request
 //http://api.songkick.com/api/3.0/venues/17522.json?apikey=ME5jCBPTyD3l4BW8&capacity
 // https://music-api.musikki.com/v1/artists/100377879?&appkey=c748d725e8b3391af04d45896c196e8d&appid=c1e2711f8daf4c2ecaf1290bd66130e6
-
-
+//https://music-api.musikki.com/v1/artists/" + artistMKid2 + "/songs?q=[release-mkid:"+100564335+"]&appkey=c748d725e8b3391af04d45896c196e8d&appid=c1e2711f8daf4c2ecaf1290bd66130e6
+//https://music-api.musikki.com/v1/songs?q=[release-mkid:"+100564335+"]&appkey=c748d725e8b3391af04d45896c196e8d&appid=c1e2711f8daf4c2ecaf1290bd66130e6
 
 // DATA VARIABLES
 var dataArtist2;
@@ -80,17 +80,23 @@ var parseDate = d3.time.format("%Y-%m-%d").parse;
 //JSON STRUCTURE
 //date, popularity, bandName,bandid,venueName,venueLat,venueLng,venueid,venueCapacity
 var myEventJSON =[];
-var myArtistJSON =[];
+var myArtistJSON;
 
 var jsonDataVenue2=[];
 var jsonDataVenueArtist=[];
+var artistEvents=[];
+var artistAlbums=[];
 
 //LOAD DATA/////////////////////////////////////////////////////////////////////////////////
+var dataArtistGigography;
+var dataArtistReleases;
+var dataArtistSongs;
+var dataBandReleases2;
+
+
 //loadDataSKVenuesArtist();
 loadDataSKVenues2();
 loadDataSKVenues();
-gatherDataArtist();
-
 
 //d3.json("https://music-api.musikki.com/v1/artists?q=[artist-name:" + artistname + "]&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId,
 //https://music-api.musikki.com/v1/artists/" + newArtistMKid + "?&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId,
@@ -119,6 +125,8 @@ function ArtistInfoRequest(artistname) {
         })
 }
 */
+
+
 
 //BASED ON THE SONGKICK SEARCH, THIS FUNCTION GATHERS THE GENRE OF EVERY ARTIST THAT IS ON THE SEARCH (IT GIVES ERROR FOR TOO MANY REQUESTS AT MUSIKKI)
 function loadDataSKVenuesArtist() {
@@ -225,21 +233,108 @@ function loadDataSKVenues() {
         })
 
 }
-var dataArtistGigography;
-var dataArtistReleases;
-var dataArtistSongs;
 
-function gatherDataArtist(){
+function gatherDataArtist() {
+    var numberRequest1 = Math.round(dataBandReleases2.summary.result_count / dataBandReleases2.summary.total_pages);
 
-    myArtistJSON.push({
-        artistPastGigs: dataArtistGigography
+    for (var x = 0; x < numberRequest1; x++) {
+        d3.json("https://music-api.musikki.com/v1/artists/" + artistMKid2 + "/releases?q=[release-type:Album]&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId + "&page=" + x, function (error, jsonDataMK) {
+            var nArrayResults = jsonDataMK.results.length;
+
+            for (var j = 0; j < nArrayResults; j++) {
+                var js = jsonDataMK.results[j];
+                var albumidCall = js.mkid;
+                //console.log(js);
+                if ( js.date != null) {
+                    queue()
+                        .defer(d3.json,"https://music-api.musikki.com/v1/songs?q=[release-mkid:" + albumidCall + "]&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId)
+                        .defer(d3.json,"https://music-api.musikki.com/v1/releases/" + albumidCall + "/reviews?&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId)
+                        .await(function(error,jsonDataSongsAlbum,jsonDataReviewsAlbum){
+                        //console.log(jsonDataSongsAlbum);
+                        var songsAlb=[];
+                        var reviewsAlb=[];
+                        var allRating=0;
+                            for (var k = 0; k < jsonDataReviewsAlbum.results.length; k++) {
+                                if (jsonDataReviewsAlbum.results[k].length != 0 && jsonDataReviewsAlbum.results[k].rating != null) {
+                                    reviewsAlb.push({
+                                        source: jsonDataReviewsAlbum.results[k].source.title,
+                                        author: jsonDataReviewsAlbum.results[k].author_info.name,
+                                        rating: jsonDataReviewsAlbum.results[k].rating,
+                                        ratingAvg: jsonDataReviewsAlbum.results[k].rating.value / jsonDataReviewsAlbum.results[k].rating.scale
+                                    })
+                                }
+                            }
 
 
 
-    });
+                        for(var u=0; u<reviewsAlb.length;u++){
 
-    console.log("///////////////// gatherDataArtist///////////////////////////////////////****************************")
+                            if(reviewsAlb.length !=0 && reviewsAlb[u].rating !=null){
+                                allRating += (reviewsAlb[u].rating.value/reviewsAlb[u].rating.scale)/reviewsAlb.length;
+                            }
+                            else{allRating=null;}
 
+                        }
+
+                        for(var k=0;k<jsonDataSongsAlbum.results.length;k++){
+                            songsAlb.push({
+                                songTitle: jsonDataSongsAlbum.results[k].title,
+                                songlength: jsonDataSongsAlbum.results[k].length,
+                                songMKid: jsonDataSongsAlbum.results[k].mkid
+                            })
+                        }
+                        var dateTemp;
+                        if(js.date.year !=null){}
+                        artistAlbums.push({
+                            year: js.date.year,
+                            albumName: js.title,
+                            cover: js.cover,
+                            albumMkid: js.mkid,
+                            type: js.type,
+                            label: js.main_label,
+                            albumSongs: songsAlb,
+                            //albumReviews:jsonDataReviewsAlbum.results
+                            albumReviews: reviewsAlb,
+                            albumReviewAvg:allRating
+                        })
+                    })
+                }
+            }
+        })
+    }
+
+    var numberRequest2= Math.round(dataArtistGigography.totalEntries/dataArtistGigography.perPage);
+    for(var i=0;i<numberRequest2;i++){
+        d3.json("http://api.songkick.com/api/3.0/artists/"+artistSKid+"/gigography.json?apikey="+Songkick_APIkey+"&page="+i,function (error, jsonDataSK) {
+            var nArrayResults=jsonDataSK.resultsPage.results.event.length;
+
+            for(var j=0;j<nArrayResults;j++){
+                var js= jsonDataSK.resultsPage.results.event[j];
+                artistEvents.push({
+                    date:js.start.date,
+                    venueName:js.venue.displayName,
+                    venueLocation:js.location.city,
+                    venueLat:js.venue.lat,
+                    venueLng:js.venue.lng,
+                    popularity:js.popularity,
+                    eventId:js.id
+
+                    })
+            } //for loop 2
+        }) //json request
+    } //for loop 1
+
+
+    myArtistJSON={
+        artistName:bandInfo.name,
+        artistPastGigs: artistEvents,
+        artistAlbums: artistAlbums
+
+    };
+
+    console.log("********************** gatherDataArtist************************************************");
+    console.log(myArtistJSON);
+    console.log("***************************************************************************************")
 }
 
 
@@ -279,7 +374,7 @@ function loadDataMK() {
                 bandConcertsLastYear=SKdataLastYear.resultsPage.totalEntries;
 
                 //Collecting....
-                dataArtistGigography=SKdataArtistGigo;
+                dataArtistGigography=SKdataArtistGigo.resultsPage;
 
 
 
@@ -296,24 +391,25 @@ function loadDataMK() {
             test=jsonData;
             //LOAD SPECIFIC DATA FOR VISUALIZATION ABOUT THE BAND
             queue()
-            //.defer(d3.json, "https://music-api.musikki.com/v1/artists?q=[artist-name:"+/*searchBox*/bandToSearch+"]&appkey="+Musikki_AppKey+"&appid="+Musikki_AppId)
+                //.defer(d3.json, "https://music-api.musikki.com/v1/artists?q=[artist-name:"+/*searchBox*/bandToSearch+"]&appkey="+Musikki_AppKey+"&appid="+Musikki_AppId)
                 //Info Request
                 .defer(d3.json, "https://music-api.musikki.com/v1/artists/" + artistMKid2 + "?&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId)
                 //Releases Request
                 .defer(d3.json, "https://music-api.musikki.com/v1/artists/" + artistMKid2 + "/releases/summary?&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId)
                 //Songs
                 .defer(d3.json, "https://music-api.musikki.com/v1/artists/" + artistMKid2 + "/songs?&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId)
-                //Songkick
-                //.defer(d3.json,"http://api.songkick.com/api/3.0/events.json?location=clientip&apikey="+Songkick_apikey+"&jsoncallback=?")
+                //Band Releases Full
+                .defer(d3.json, "https://music-api.musikki.com/v1/artists/" + artistMKid2 + "/releases?&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId)
 
-                .await(function (error, dataBandInfo, dataBandReleases, dataBandSongs1) {
+                .await(function (error, dataBandInfo, dataBandReleases, dataBandSongs1,dataBandReleasesFull) {
                     //Test Data on Console
                     console.log("Band Musikki ID");
                     console.log(artistMKid2);
                     console.log("Band Info");
                     console.log(dataBandInfo.result);
                     console.log("Band Releases");
-                    console.log(dataBandReleases);
+                    //console.log(dataBandReleases);
+                    console.log(dataBandReleasesFull);
                     console.log("Band Songs");
                     console.log(dataBandSongs1);
                     console.log("Songkick");
@@ -326,7 +422,7 @@ function loadDataMK() {
                     // Albums
                     dataBandAlbums = dataBandReleases;
                     bandAlbumsTotal=parseInt(dataBandAlbums.album.studio);
-
+                    dataBandReleases2 = dataBandReleasesFull;
                     // Songs
                     dataBandSongs=parseInt(dataBandSongs1.summary.result_count);
 
@@ -361,8 +457,11 @@ function createVis() {
     showBandInfo();
     updateBandBadge();
 
+    gatherDataArtist();
+
 
 }
+
 function createVisMap(){
 
     //DRAW MAP

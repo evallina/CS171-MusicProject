@@ -30,15 +30,7 @@ var fillGenre="rgb(20,20,20)";
 var fillBackground="rgb(220,220,220)";
 var strokeWidth="1.5";
 
-var textFont="Roboto";
 var textSize=25;
-var textColor="rgb(20,20,20)";
-var textWeigth=900;
-
-var textSize2=10;
-var textWeigth2=900;
-
-
 
 
 
@@ -113,29 +105,6 @@ var updateBandBadge= function() {
     yBandYearsActive.domain([0,MaxValueYearsBand]);
     yBandConcertsYear.domain([0,MaxValueConcertsYear]);
 
-    //BARS TEST///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    var barAlbums = svg2.selectAll(".badge")
-        .data(dataplace);
-
-    //ADD
-    barAlbums.enter()
-        .append("circle")
-        .attr("class", "badge");
-
-    //UPDATE
-    barAlbums
-        .attr("cx", heighthalf)
-        .attr("cy", widthhalf)
-        .attr("r", function(d){ return d.totalalbums })
-        .attr("fill", "rgb(20,20,20)");
-
-    //REMOVE
-    barAlbums.exit().remove();
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     //BARS ALBUMS//////////////////////////////////////////////////
     barAlbums2.remove();
     barAlbums2 = svg2.append("rect");
@@ -154,9 +123,24 @@ var updateBandBadge= function() {
         .attr("height",yBandAlbumsProduced(bandAlbumsTotal))
     ;
     //text..............................................................................
-
-    txtTest=textBadgeGenerator(barAlbums2_txt,barAlbums2_txt2,0,yBandAlbumsProduced(bandAlbumsTotal),bandAlbumsTotal,"Total Albums");
-
+    barAlbums2_txt.remove();
+    barAlbums2_txt=svg2.append("text");
+    barAlbums2_txt
+        .attr("class", "textBadge1")
+        .attr("x",0)
+        .attr("y",yBandAlbumsProduced(bandAlbumsTotal)+30)
+        .attr("transform", "translate("+(widthhalf)+","+heighthalf+") rotate("+(rotBadge+0)+")")
+        .text(bandAlbumsTotal)
+    ;
+    barAlbums2_txt2.remove();
+    barAlbums2_txt2=svg2.append("text");
+    barAlbums2_txt2
+        .attr("class", "textBadge2")
+        .attr("x",0)
+        .attr("y",yBandAlbumsProduced(bandAlbumsTotal)+(20+textSize))
+        .attr("transform", "translate("+(widthhalf)+","+heighthalf+") rotate("+(rotBadge+0)+")")
+        .text("Total Albums")
+    ;
 
     //BARS SONGS//////////////////////////////////////////////////
     barSongs.remove();
@@ -176,8 +160,25 @@ var updateBandBadge= function() {
         .attr("height",yBandSongsProduced(dataBandSongs))
     ;
     //text..............................................................................
-    textBadgeGenerator(barSongs_txt,barSongs_txt2,90,yBandSongsProduced(dataBandSongs),dataBandSongs,"Total Songs");
-
+    //textBadgeGenerator(barSongs_txt,barSongs_txt2,90,yBandSongsProduced(dataBandSongs),dataBandSongs,"Total Songs");
+    barSongs_txt.remove();
+    barSongs_txt=svg2.append("text");
+    barSongs_txt
+        .attr("class", "textBadge1")
+        .attr("x",0)
+        .attr("y",yBandSongsProduced(dataBandSongs)+30)
+        .attr("transform", "translate("+(widthhalf)+","+heighthalf+") rotate("+(rotBadge+90)+")")
+        .text(dataBandSongs)
+    ;
+    barSongs_txt2.remove();
+    barSongs_txt2=svg2.append("text");
+    barSongs_txt2
+        .attr("class", "textBadge2")
+        .attr("x",0)
+        .attr("y",yBandSongsProduced(dataBandSongs)+(20+textSize))
+        .attr("transform", "translate("+(widthhalf)+","+heighthalf+") rotate("+(rotBadge+90)+")")
+        .text("Total Songs")
+    ;
 
 
     //BARS MEMBERS////////////////////////////////////////////////// bandMembersTotal
@@ -198,8 +199,29 @@ var updateBandBadge= function() {
         .attr("height",yBandGroupMembers(bandMembersTotal))
     ;
     //text..............................................................................
-    textBadgeGeneratorSplit(barMembers_txt,barMembers_txt2,180,yBandGroupMembers(bandMembersTotal),bandMembersTotal,"Members",0);
+    //textBadgeGeneratorSplit(barMembers_txt,barMembers_txt2,180,yBandGroupMembers(bandMembersTotal),bandMembersTotal,"Members",0);
+    barMembers_txt.remove();
+    barMembers_txt=svg2.append("text");
 
+    barMembers_txt
+        .attr("class", "textBadge12")
+        .attr("x",0)
+        .attr("y",yBandGroupMembers(bandMembersTotal)+15)
+        .attr("transform", "translate("+((widthhalf)-(xCrdYearsActive*0))+","+((heighthalf)-(yCrdYearsActive*0))+") rotate("+(rotBadge+180)+")")
+        .text(bandMembersTotal)
+    ;
+
+    barMembers_txt2.remove();
+    barMembers_txt2=svg2.append("text");
+
+    barMembers_txt2
+        .attr("class", "textBadge22")
+        .attr("x",0)
+        .attr("y",yBandGroupMembers(bandMembersTotal)+(20+(textSize/5)))
+        .attr("transform", "translate("+((widthhalf)-(xCrdYearsActive*0))+","+((heighthalf)-(yCrdYearsActive*0))+") rotate("+(rotBadge+180)+")")
+        .text("Members")
+    ;
+    //svgVariable4.exit().remove();
 
     //BARS YEARS////////////////////////////////////////////////// bandMembersTotal
     barYearsActive.remove();
@@ -220,7 +242,29 @@ var updateBandBadge= function() {
         .attr("height",yBandYearsActive(bandYearsActiveTotal))
     ;
     //text..............................................................................
-    textBadgeGeneratorSplit(barYearsActive_txt,barYearsActive_txt2,180,yBandYearsActive(bandYearsActiveTotal),bandYearsActiveTotal,"Years Active",1);
+    //textBadgeGeneratorSplit(barYearsActive_txt,barYearsActive_txt2,180,yBandYearsActive(bandYearsActiveTotal),bandYearsActiveTotal,"Years Active",1);
+    barYearsActive_txt.remove();
+    barYearsActive_txt=svg2.append("text");
+
+    barYearsActive_txt
+        .attr("class", "textBadge12")
+        .attr("x",0)
+        .attr("y",yBandYearsActive(bandYearsActiveTotal)+15)
+        .attr("transform", "translate("+((widthhalf)-(xCrdYearsActive*1))+","+((heighthalf)-(yCrdYearsActive*1))+") rotate("+(rotBadge+180)+")")
+        .text(bandYearsActiveTotal)
+    ;
+
+    barYearsActive_txt2.remove();
+    barYearsActive_txt2=svg2.append("text");
+
+    barYearsActive_txt2
+        .attr("class", "textBadge22")
+        .attr("x",0)
+        .attr("y",yBandYearsActive(bandYearsActiveTotal)+(20+(textSize/5)))
+        .attr("transform", "translate("+((widthhalf)-(xCrdYearsActive*1))+","+((heighthalf)-(yCrdYearsActive*1))+") rotate("+(rotBadge+180)+")")
+        .text("Years Active")
+    ;
+
 
     //BARS CONCERTS YEAR//////////////////////////////////////////////////
     barConcertsYear.remove();
@@ -240,8 +284,25 @@ var updateBandBadge= function() {
         .attr("height",yBandConcertsYear(bandConcertsLastYear))
     ;
     //text..............................................................................
-    textBadgeGenerator(barConcertsYear_txt,barConcertsYear_txt2,270,yBandConcertsYear(bandConcertsLastYear),bandConcertsLastYear,"Concerts Last Year");
-
+    //textBadgeGenerator(barConcertsYear_txt,barConcertsYear_txt2,270,yBandConcertsYear(bandConcertsLastYear),bandConcertsLastYear,"Concerts Last Year");
+    barConcertsYear_txt.remove();
+    barConcertsYear_txt=svg2.append("text");
+    barConcertsYear_txt
+        .attr("class", "textBadge1")
+        .attr("x",0)
+        .attr("y",yBandConcertsYear(bandConcertsLastYear)+30)
+        .attr("transform", "translate("+(widthhalf)+","+heighthalf+") rotate("+(rotBadge+270)+")")
+        .text(bandConcertsLastYear)
+    ;
+    barConcertsYear_txt2.remove();
+    barConcertsYear_txt2=svg2.append("text");
+    barConcertsYear_txt2
+        .attr("class", "textBadge2")
+        .attr("x",0)
+        .attr("y",yBandConcertsYear(bandConcertsLastYear)+(20+textSize))
+        .attr("transform", "translate("+(widthhalf)+","+heighthalf+") rotate("+(rotBadge+270)+")")
+        .text("Concerts Last Year")
+    ;
 
     //CENTER CIRCLE////////////////////////////////////////////////
     /*
@@ -263,35 +324,45 @@ var updateBandBadge= function() {
 
 //TEXT FUNCTION
 function textBadgeGenerator(svgVariable,svgVariable2,rot,scaleData,dataValue,textBadge){
+    //$("#data-badge").remove();
+    var svgVariable3;
+    var svgVariable4;
+    //svgVariable3.remove();
 
-    //svgVariable.remove();
-    svgVariable=svg2.append("text");
-    svgVariable
+    svgVariable3=svg2.append("text");
+    svgVariable3
         .attr("class", "textBadge1")
         .attr("x",0)
         .attr("y",scaleData+30)
         .attr("transform", "translate("+(widthhalf)+","+heighthalf+") rotate("+(rotBadge+rot)+")")
         .text(dataValue)
     ;
-
-    //svgVariable2.remove();
-    svgVariable2=svg2.append("text");
-    svgVariable2
+    //svgVariable3.exit().remove();
+    //svgVariable4.exit().remove();
+    svgVariable4=svg2.append("text");
+    svgVariable4
         .attr("class", "textBadge2")
         .attr("x",0)
         .attr("y",scaleData+(20+textSize))
         .attr("transform", "translate("+(widthhalf)+","+heighthalf+") rotate("+(rotBadge+rot)+")")
         .text(textBadge)
+
     ;
+   // svgVariable4.exit().remove();
+    //svgVariable2.exit().remove();
 }
 
 function textBadgeGeneratorSplit(svgVariable,svgVariable2,rot,scaleData,dataValue,textBadge,split){
 
     //Data Text
-    svgVariable.remove();
-    svgVariable=svg2.append("text");
 
-    svgVariable
+    var svgVariable3;
+    var svgVariable4;
+
+    //svgVariable3.remove();
+    svgVariable3=svg2.append("text");
+
+    svgVariable3
         .attr("class", "textBadge12")
         .attr("x",0)
         .attr("y",scaleData+15)
@@ -299,17 +370,17 @@ function textBadgeGeneratorSplit(svgVariable,svgVariable2,rot,scaleData,dataValu
         .text(dataValue)
     ;
 
-    //Small Text
-    svgVariable2.remove();
-    svgVariable2=svg2.append("text");
+    //svgVariable4.remove();
+    svgVariable4=svg2.append("text");
 
-    svgVariable2
+    svgVariable4
         .attr("class", "textBadge22")
         .attr("x",0)
         .attr("y",scaleData+(20+(textSize/5)))
         .attr("transform", "translate("+((widthhalf)-(xCrdYearsActive*split))+","+((heighthalf)-(yCrdYearsActive*split))+") rotate("+(rotBadge+rot)+")")
         .text(textBadge)
     ;
+    //svgVariable4.exit().remove();
 }
 
 

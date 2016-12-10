@@ -427,3 +427,50 @@ h6{
 #genre-selector .form-group{
 
 }
+
+/***************/
+/*  BAR CHART  */
+/***************/
+
+.bar {
+
+}
+#x-label{
+    font: 6px sans-serif;
+    font-weight: 900;
+
+}
+
+.axis {
+    font: 10px sans-serif;
+
+}
+
+.axis-title {
+    fill: #9C8B83;
+    font-size: 11px;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #333;
+    shape-rendering: crispEdges;
+}
+
+.x-axis {
+    font-size: 12px;
+}
+
+.x-axis path {
+    display: none;
+}
+
+.x-axis line {
+    display: none;
+}
+
+.minor line {
+    stroke: #777;
+    stroke-dasharray: 2,2;
+}

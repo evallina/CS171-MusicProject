@@ -27,8 +27,8 @@ var rockIcon;
 
 //SCALES
 
-var venueCapacityScale= d3.scale.linear().range([ 50,5000]);
-    venueCapacityScale.domain([10,25000]);
+var venueCapacityScale= d3.scale.linear().range([ 50,1500]);
+    venueCapacityScale.domain([10,50000]);
 var venuePopularityScale= d3.scale.linear().range([ 0,255]);
 venuePopularityScale.domain([0,0.001]);
 
