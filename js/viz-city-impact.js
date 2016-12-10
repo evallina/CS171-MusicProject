@@ -216,9 +216,9 @@ function updateImpactViz(){
     //yShort.domain([valueShort,0]);
 
     x.domain(sortData01.map(function(d){return d.date;}));
-    y.domain([valueMax,0]);
-    y2.domain([valueMax2,0]);
-    y3.domain([valueMax3,0]);
+    y.domain([valueMaxEvents,0]);
+    y2.domain([valueMaxPop,0]);
+    y3.domain([valueMaxCap,0]);
 
     var xVariable=3;
     var chartdowOffset=40;
@@ -245,6 +245,7 @@ function updateImpactViz(){
         .attr("x", function(d) { return x(d.date); })
         .attr("y", function(d) { return y(d.totalEvents); })
         .attr("width", x.rangeBand()-5)
+        //.attr("height",50)
         .attr("height", function(d) { return height22 - y(d.totalEvents); })
         .attr("fill", colorPopulation)
     ;
@@ -260,6 +261,7 @@ function updateImpactViz(){
         .attr("x", function(d) { return x(d.date)+xVariable; })
         .attr("y", function(d) { return y2(d.avgPopularity); })
         .attr("width", x.rangeBand()-5)
+        .attr("height",80)
         .attr("height", function(d) { return height22 - y2(d.avgPopularity); })
         .attr("fill", colorPopulation)
         .attr("fill-opacity", 0.4)
