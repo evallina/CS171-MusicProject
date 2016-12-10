@@ -30,9 +30,9 @@ var y2 = d3.scale.linear().range([height22, 0]);
 var y3 = d3.scale.linear().range([height22-100, 0]);
 
 var data01;
-var valueMax;
-var valueMax2;
-var valueMax3;
+var valueMaxEvents;
+var valueMaxPop;
+var valueMaxCap;
 
 var sortData01;
 var ArrayDates=[];
@@ -202,9 +202,9 @@ function updateImpactViz(){
 
     sortData01= sortingData(data01,xSelect2);
 
-    valueMax =d3.max(data01,function(d){return d.totalEvents;});
-    valueMax2 =d3.max(data01,function(d){return d.avgPopularity;});
-    valueMax3 =d3.max(data01,function(d){return d.totalCapacity;});
+    valueMaxEvents =d3.max(data01,function(d){return d.totalEvents;});
+    valueMaxPop =d3.max(data01,function(d){return d.avgPopularity;});
+    valueMaxCap =d3.max(data01,function(d){return d.totalCapacity;});
     /*valueShort = d3.max(sortData01, function(d){
      if (xSelect2=="Code"){return 0}
      else{ return d[xSelect2];} })

@@ -284,7 +284,7 @@ function gatherDataArtist() {
                             })
                         }
                         var dateTemp;
-                        if(js.date.year !=null){}
+                        if(js.date.year !=null ){
                         artistAlbums.push({
                             year: js.date.year,
                             albumName: js.title,
@@ -296,7 +296,7 @@ function gatherDataArtist() {
                             //albumReviews:jsonDataReviewsAlbum.results
                             albumReviews: reviewsAlb,
                             albumReviewAvg:allRating
-                        })
+                        })}
                     })
                 }
             }
