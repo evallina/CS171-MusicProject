@@ -328,9 +328,10 @@ function gatherDataArtist() {
     myArtistJSON={
         artistName:bandInfo.name,
         artistImage: bandInfo.image,
-        artistmkId:bandInfo.mkid,
+        artistIDmk:bandInfo.mkid,
+        artistIDsk: artistSKid,
         artistLabel:bandInfo.current_labels,
-        artistdates:bandInfo.dates,
+        artistDates:bandInfo.dates,
         artistBio:bandInfo.bio,
         artistGenres: bandInfo.genres,
         artistPastGigs: artistEvents,
