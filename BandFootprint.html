@@ -158,55 +158,82 @@
 
     <br/>
 </div>
+<div id="container_test" style="position: relative; width: 500px; height: 300px;"></div>
+<!--<script>-->
+<!--var map = new Datamap({element: document.getElementById('container')});-->
+<!--</script>-->
+<h2>Datamaps Playground</h2>
+<div id="arcs" style="position: relative; width: 600px; height: 1000px;"></div>
+<div id="container1" style="position: relative; width: 80%; max-height: 450px;"></div>
+
+<button class="zoom-button" data-zoom="reset">0</button>
+<button class="zoom-button" data-zoom="out">-</button>
+<button class="zoom-button" data-zoom="in">+</button>
+<div id="zoom-info"></div>
+
+<div class="fluid-row">
+    <div class="well span11 pagination-centered">
+        <h1>Demos using timeknots</h1>
+        <h5><a href='https://github.com/alangrafu/timeknots'>https://github.com/alangrafu/timeknots</a></h5>
+    </div>
+</div>
+<div class="fluid-row">
+    <div class="span3">
+        <h2>Stanley Kubrick's movies</h2>
+        <h5>Part of Kubrick's Filmography form Wikipedia</h5>
+        <div id="timeline1" style="width:500px;"></div>
+
+    </div>
 
 
 
 
 
 <!--SKECTH LAYOUT///////////////////////////////////////////////////////////////////////////////////////////// -->
-<div >
-    <div class="container" id="initiatives2">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12" >
-                <h3>Intro | Band Search</h3>
-                <img  src="img/BandFootprintSketch/161114_Bandootprint_00.jpg" alt="Sketch"
-                     style="width: 1000px;">
+    <!--
+        <div >
+        <div class="container" id="initiatives2">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12" >
+                    <h3>Intro | Band Search</h3>
+                    <img  src="img/BandFootprintSketch/161114_Bandootprint_00.jpg" alt="Sketch"
+                         style="width: 1000px;">
+                </div>
             </div>
-        </div>
-        <div class="row" >
-            <div class="col-lg-6 col-md-6 col-sm-12" >
-                <h3>Band Profile | 'Data Badge'</h3>
-                <img  src="img/BandFootprintSketch/161114_Bandootprint_01.jpg" alt="Sketch"
-                      style="width: 1000px; ">
+            <div class="row" >
+                <div class="col-lg-6 col-md-6 col-sm-12" >
+                    <h3>Band Profile | 'Data Badge'</h3>
+                    <img  src="img/BandFootprintSketch/161114_Bandootprint_01.jpg" alt="Sketch"
+                          style="width: 1000px; ">
 
+                </div>
             </div>
-        </div>
-        <div class="row" >
-            <div class="col-lg-6 col-md-6 col-sm-12" >
-                <h3>Band Production  | Timeline</h3>
-                <img  src="img/BandFootprintSketch/161114_Bandootprint_03.jpg" alt="Sketch"
-                      style="width: 1000px;">
+            <div class="row" >
+                <div class="col-lg-6 col-md-6 col-sm-12" >
+                    <h3>Band Production  | Timeline</h3>
+                    <img  src="img/BandFootprintSketch/161114_Bandootprint_03.jpg" alt="Sketch"
+                          style="width: 1000px;">
+                </div>
             </div>
-        </div>
 
-        <div class="row" >
-            <div class="col-lg-6 col-md-6 col-sm-12" >
-                <h3>Band Global Footprint | Map  + Timeline</h3>
-                <img  src="img/BandFootprintSketch/161114_Bandootprint_04.jpg" alt="Sketch"
-                      style="width: 1000px;">
+            <div class="row" >
+                <div class="col-lg-6 col-md-6 col-sm-12" >
+                    <h3>Band Global Footprint | Map  + Timeline</h3>
+                    <img  src="img/BandFootprintSketch/161114_Bandootprint_04.jpg" alt="Sketch"
+                          style="width: 1000px;">
+                </div>
             </div>
-        </div>
-        <div class="row" >
-            <div class="col-lg-6 col-md-6 col-sm-12" >
-                <h3>Concert Impact | Social Media Stream</h3>
-                <img  src="img/BandFootprintSketch/161114_Bandootprint_02.jpg" alt="Sketch"
-                      style="width: 1000px;">
+            <div class="row" >
+                <div class="col-lg-6 col-md-6 col-sm-12" >
+                    <h3>Concert Impact | Social Media Stream</h3>
+                    <img  src="img/BandFootprintSketch/161114_Bandootprint_02.jpg" alt="Sketch"
+                          style="width: 1000px;">
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Web Actual Structure-->
+    <!-- Web Actual Structure-->
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 <!-- Load JS libraries -->
@@ -225,10 +252,6 @@
 
 <script src=js/timeknots-min.js></script>
 <script src="js/timeknots.js"></script>
-
-
-
-
 
 <!-- Visualization objects -->
 <!--<script src="js/countvis.js"></script>-->

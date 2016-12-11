@@ -251,7 +251,7 @@ function gatherDataArtist() {
                         .defer(d3.json, "https://music-api.musikki.com/v1/songs?q=[release-mkid:" + albumidCall + "]&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId)
                         .defer(d3.json, "https://music-api.musikki.com/v1/releases/" + albumidCall + "/reviews?&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId)
                         .await(function (error, jsonDataSongsAlbum, jsonDataReviewsAlbum) {
-                            //console.log(jsonDataSongsAlbum);
+                            console.log("jsonDataReviewsAlbum",jsonDataReviewsAlbum);
                             var songsAlb = [];
                             var reviewsAlb = [];
                             var allRating = 0;
@@ -458,7 +458,6 @@ function loadDataMK() {
 
                     //DRAW VISUALIZATION FOR THE FIRST TIME ///////////////////////////////////////////////////////////
                     createVis();
-
                     createVisMap();
                     //var venueMap = new VenueMap("venue-map", skNYresults, [40.724126, -73.984972]);
 
@@ -470,9 +469,8 @@ function createVis() {
 
     showBandInfo();
     updateBandBadge();
-
     gatherDataArtist();
-
+    loadWorldMap();
 
 }
 

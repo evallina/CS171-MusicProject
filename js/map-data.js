@@ -161,9 +161,9 @@ function drawTimeKnots() {
     });
 }
 
-
+function loadWorldMap(){
 // testing with radiohead
-$.getJSON("http://api.songkick.com/api/3.0/search/artists.json?query=Chainsmokers&apikey=ME5jCBPTyD3l4BW8",
+$.getJSON("http://api.songkick.com/api/3.0/search/artists.json?query="+searchBox+"&apikey=ME5jCBPTyD3l4BW8",
     function (songkickData, err) {
         console.log("////////////////////////NEW REQUEST//////////////////////////////////////////////////////////////")
         data = songkickData.resultsPage.results.artist[0];
@@ -194,7 +194,7 @@ $.getJSON("http://api.songkick.com/api/3.0/search/artists.json?query=Chainsmoker
             })
         // var gigs = get_gigs_by_id(253846);
     });
-
+}
 
 //
 // data.resultsPage.results.event
