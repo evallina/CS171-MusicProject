@@ -99,7 +99,7 @@ function showBandInfo(d){
             "<p><b>"+"- Foundation: </b>"+ foundationyear2 +"</p>"+
             "<p><b>"+"- Music Genre: </b>"+bandMusicGenre2 +"</p>"+
             "<p><b>"+"- Current Label: </b>"+bandCurrentLabel +"</p>"+
-            "<img src="+d.results[0].image+" alt="+d.results[0].name+" style=width:200px;height:200px;>"
+            "<img class=img-circle src="+d.results[0].image+" alt="+d.results[0].name+" >"
     ;
 }
 

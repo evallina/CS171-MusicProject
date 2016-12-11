@@ -24,90 +24,56 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+
             </button>
             <a class="navbar-brand" href="index.html"><b id="logo-navbar">Music Footprint</b></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="BandFootprint.html">Band Footprint<span class="sr-only">(current)</span></a></li>
-                <li><a href="GenreFootprint.html">Genre Footprint</a></li>
-            </ul>
-
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input id="band-search" type="text" class="form-control" placeholder="Search">
+            <!-- Search-->
+            <form class="navbar-form navbar-right">
+                <div id="custom-search-input">
+                    <div class="form-group">
+                        <input id="band-search" type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button id="filter-submit" class="btn btn-info btn-lg" type="button">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
                 </div>
-                <button id="filter-submit" class="btn btn-info btn-lg" type="button">
-                    <i class="glyphicon glyphicon-search"></i>
-                </button>
             </form>
-
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Team</a></li>
+                <!--<li><a href="#">Team</a></li>-->
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
 
 
-
 <!-- Sketch Layout-->
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-<!--SEARCH BOX /////////////////////////////////////////////////////////////////////////////////////////////// -->
-<div class="row" id="SearchBox">
-    <div class="col-md-6">
-        <h6>Band Search</h6>
-        <div id="custom-search-input">
-            <div class="input-group col-md-12 col-sm-12" >
-                <!-- <input id="upper-bound" type="text" name="upperBound" placeholder="2014" value="2014"></br>-->
-                <input id="band-search2" type="text" class="form-control"  placeholder="Search" />
-                <span class="input-group-btn">
-                        <button id="filter-submit2" class="btn btn-info btn-lg" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-
-            </div>
-            <!--<input id="filter-submit" type="submit" value="Update"></br>-->
-        </div>
-    </div>
-
+<!--COVER PAGE /////////////////////////////////////////////////////////////////////////////////////////////// -->
+<div id="coverpage">
+    Music Footprint
 </div>
-<h2 id="bandGenre_01">skhkjshksjklsdf</h2>
-<!-- Select Band Genre?-->
-<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-
+<!--INTRO /////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 
 <!--VISUALIZATIONS ////////////////////////////////////////////////////////////////////////////////////////// -->
-</br>
-<p>(*test API: Musikki)////////////////////////////////////////////////////////////////////////////////</p>
-<!--
-</br>
-<div id="venue-map">Genre Map Test</div>
-</br> -->
+
 
 <div class="container
 ">
     <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm12" id="info-band">...Please Search for a Band</div>
+        <div class="col-lg-6 col-md-6 col-sm12" id="info-band">Band Information</div>
+        <div class="col-lg-6 col-md-6 col-sm12" id="band-badge"><b>Band Badge</b></br>(Custom Shape encoding key facts about the searched band)</div>
     </div>
     </br>
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm12" id="band-badge">Band Badge</div>
-    </div>
-    </br>
-    </br>
-    </br>
+
     </br>
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm12" id="band-fact"><h2><b><i>{Band Fact to introduce City.....}</i></b></h2></div>
@@ -165,22 +131,17 @@
 <h2>Datamaps Playground</h2>
 <div id="arcs" style="position: relative; width: 600px; height: 1000px;"></div>
 <div id="container1" style="position: relative; width: 80%; max-height: 450px;"></div>
-
+<!--
 <button class="zoom-button" data-zoom="reset">0</button>
 <button class="zoom-button" data-zoom="out">-</button>
-<button class="zoom-button" data-zoom="in">+</button>
+<button class="zoom-button" data-zoom="in">+</button>-->
 <div id="zoom-info"></div>
 
 <div class="fluid-row">
-    <div class="well span11 pagination-centered">
-        <h1>Demos using timeknots</h1>
-        <h5><a href='https://github.com/alangrafu/timeknots'>https://github.com/alangrafu/timeknots</a></h5>
-    </div>
 </div>
 <div class="fluid-row">
     <div class="span3">
-        <h2>Stanley Kubrick's movies</h2>
-        <h5>Part of Kubrick's Filmography form Wikipedia</h5>
+        <h2>Band x history </h2>
         <div id="timeline1" style="width:500px;"></div>
 
     </div>
@@ -242,10 +203,11 @@
 <script src="js/bootstrap.min.js">  </script>
 
 <script src="js/queue.min.js">      </script>
-<script src="js/topojson.js">       </script>
-<script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>
 <script src="js/d3.min.js">         </script>
 <script src="js/d3.tip.js">         </script>
+<script src="js/topojson.js">       </script>
+<script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>
+
 
 <script src="js/nouislider.min.js"> </script>
 <script src="js/leaflet.js">        </script>

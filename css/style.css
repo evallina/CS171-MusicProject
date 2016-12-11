@@ -1,12 +1,22 @@
-/* YOUR CSS STYLES */
-#info-band{
-    background: rgb(180,180,180);
-    padding-bottom: 2%;
-}
-#band-badge{
-    background: rgb(220,220,220);
+body{
+    font-family: 'Roboto';
 
 }
+
+/* YOUR CSS STYLES */
+#info-band{
+    padding-bottom: 2%;
+}
+.img-circle {
+    clip-path: circle(60px at center);
+}
+
+#band-badge{
+    padding-top: 2%;
+
+}
+
+
 #band-history{
     background: rgb(180,180,180);
     padding-bottom: 2%;
@@ -308,6 +318,7 @@ h4{
 */
 #logo-navbar{
     color:rgb(255,255,255);
+    font-size: 30px;
 }
 
 .navbar-inner {
@@ -316,7 +327,7 @@ h4{
 
 .navbar-brand,
 .navbar-nav li a {
-    line-height: 10px;
+    line-height: 30px;
     height: 30px;
     padding-top: 10px;
 
@@ -352,10 +363,15 @@ h4{
     border: solid 1px #fff;
     border-radius: 6px;
     background-color: #fff;
+    align: center;
+
 }
 #custom-search-input input{
     border: 0;
     box-shadow: none;
+    padding: 0 150px 0 10px;
+    font-weight: 900;
+    font-size: 20px;
 }
 
 #custom-search-input button{

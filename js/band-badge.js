@@ -8,15 +8,24 @@ var margin = {top: 20, right: 10, bottom: 20, left: 10};
 var width = 1000 - (margin.left + margin.right),
     height = 600 - (margin.top + margin.bottom);
 
-var heighthalf = height / 2;
-var widthhalf= width / 2;
+
+var marginB = {top: 20, right: 10, bottom: 20, left: 10};
+
+var widthB =    600 - (marginB.left + marginB.right),
+    heightB =   600 - (marginB.top + marginB.bottom);
+
+var heighthalf = heightB / 2;
+var widthhalf= widthB / 2;
 
 //SVG AREA/////////////////////////////////////////////////////////////////////////////////////////////
 var svg2 = d3.select("#band-badge").append("svg")
-    .attr("width", width)
-    .attr("height", height)
+    .attr("width", widthB)
+    .attr("height", heightB)
+    //.attr("style","background-image: url(css/img/YvetteDeWit_01.jpg)")
     .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + marginB.left + "," + marginB.top + ")")
+
+    ;
 
 //Drawing Variables
 var rotBadge=60;
@@ -53,21 +62,12 @@ var barMembers_txt2= svg2.append("text");
 var barYearsActive_txt= svg2.append("text");
 var barYearsActive_txt2= svg2.append("text");
 
-var txtTest;
 var barConcertsYear_txt= svg2.append("text");
 var barConcertsYear_txt2= svg2.append("text");
-
-// VARIABLES/////////////////////////////////////////////////////////////////////////////////////
-var BandYearsActive;
-var BandPopularity;
-var BandSongsProduced;
-var BandAlbumsProduced;
-var BandGroupMembers;
 
 
 //SETUP SCALES/////////////////////////////////////////////////////////////////////////////////////////
 var yBandYearsActive = d3.scale.linear().range([ 0,heighthalf/1.5]);
-var yBandPopularity = d3.scale.linear().range([ 0,heighthalf/1.5]);
 var yBandSongsProduced = d3.scale.linear().range([ 0,heighthalf/1.5]);
 var yBandAlbumsProduced = d3.scale.linear().range([ 0,heighthalf/1.5]);
 var yBandGroupMembers = d3.scale.linear().range([ 0,heighthalf/1.5]);
@@ -81,20 +81,8 @@ var MaxValueMembersBand=25;
 var MaxValueYearsBand=80;
 var MaxValueConcertsYear=365;
 
-
-//SETUP AXIS///////////////////////////////////////////////////////////////////////////////////////////
-
-//INITIALIZE DATA/////////////////////////////////////////////////////////////////////////////////////
-
-//BOX SELECTION////////////////////////////////////////////////////////////////////////////////////////
-
 //BAND BADGE//////////////////////////////////////////////////////////////////////////////////////////////////////////
-var dataplace = [
-    {totalalbums: 20, totalmembers: 5, yearsactive: 20}
-];
-
-
-var updateBandBadge= function() {
+var updateBandBadge2= function() {
     console.log("updateBandBadge Loaded ////////////////////////////////////////////// ");
 
 
@@ -117,6 +105,7 @@ var updateBandBadge= function() {
         .attr("fill",fillGenre)
         .attr("stroke",fillBackground)
         .attr("stroke-width",strokeWidth)
+
     ;
 
     barAlbums2.transition().duration(1500)
@@ -304,84 +293,11 @@ var updateBandBadge= function() {
         .text("Concerts Last Year")
     ;
 
-    //CENTER CIRCLE////////////////////////////////////////////////
-    /*
-    var circleCenter= svg2.append("circle");
-
-    circleCenter
-        .attr("cx", 0)
-        .attr("cy", 0)
-        .attr("r",20)
-        .attr("fill",fillGenre)
-        .attr("stroke",fillBackground)
-        .attr("stroke-width",strokeWidth)
-    ;
-    */
 
     console.log("updateBandBadge End ////////////////////////////////////////////// ");
 }
 
 
-//TEXT FUNCTION
-function textBadgeGenerator(svgVariable,svgVariable2,rot,scaleData,dataValue,textBadge){
-    //$("#data-badge").remove();
-    var svgVariable3;
-    var svgVariable4;
-    //svgVariable3.remove();
-
-    svgVariable3=svg2.append("text");
-    svgVariable3
-        .attr("class", "textBadge1")
-        .attr("x",0)
-        .attr("y",scaleData+30)
-        .attr("transform", "translate("+(widthhalf)+","+heighthalf+") rotate("+(rotBadge+rot)+")")
-        .text(dataValue)
-    ;
-    //svgVariable3.exit().remove();
-    //svgVariable4.exit().remove();
-    svgVariable4=svg2.append("text");
-    svgVariable4
-        .attr("class", "textBadge2")
-        .attr("x",0)
-        .attr("y",scaleData+(20+textSize))
-        .attr("transform", "translate("+(widthhalf)+","+heighthalf+") rotate("+(rotBadge+rot)+")")
-        .text(textBadge)
-
-    ;
-   // svgVariable4.exit().remove();
-    //svgVariable2.exit().remove();
-}
-
-function textBadgeGeneratorSplit(svgVariable,svgVariable2,rot,scaleData,dataValue,textBadge,split){
-
-    //Data Text
-
-    var svgVariable3;
-    var svgVariable4;
-
-    //svgVariable3.remove();
-    svgVariable3=svg2.append("text");
-
-    svgVariable3
-        .attr("class", "textBadge12")
-        .attr("x",0)
-        .attr("y",scaleData+15)
-        .attr("transform", "translate("+((widthhalf)-(xCrdYearsActive*split))+","+((heighthalf)-(yCrdYearsActive*split))+") rotate("+(rotBadge+rot)+")")
-        .text(dataValue)
-    ;
-
-    //svgVariable4.remove();
-    svgVariable4=svg2.append("text");
-
-    svgVariable4
-        .attr("class", "textBadge22")
-        .attr("x",0)
-        .attr("y",scaleData+(20+(textSize/5)))
-        .attr("transform", "translate("+((widthhalf)-(xCrdYearsActive*split))+","+((heighthalf)-(yCrdYearsActive*split))+") rotate("+(rotBadge+rot)+")")
-        .text(textBadge)
-    ;
-    //svgVariable4.exit().remove();
-}
 
 
 
