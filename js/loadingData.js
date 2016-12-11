@@ -240,20 +240,22 @@ function gatherDataArtist() {
     for (var x = 0; x < numberRequest1; x++) {
         d3.json("https://music-api.musikki.com/v1/artists/" + artistMKid2 + "/releases?q=[release-type:Album]&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId + "&page=" + x, function (error, jsonDataMK) {
             var nArrayResults = jsonDataMK.results.length;
+            console.log("testtttkkjkjkjkjkkjkjkjkkj",jsonDataMK.results.length);
 
             for (var j = 0; j < nArrayResults; j++) {
                 var js = jsonDataMK.results[j];
                 var albumidCall = js.mkid;
                 //console.log(js);
-                if ( js.date != null) {
+                if (js.date != null) {
                     queue()
-                        .defer(d3.json,"https://music-api.musikki.com/v1/songs?q=[release-mkid:" + albumidCall + "]&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId)
-                        .defer(d3.json,"https://music-api.musikki.com/v1/releases/" + albumidCall + "/reviews?&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId)
-                        .await(function(error,jsonDataSongsAlbum,jsonDataReviewsAlbum){
-                        //console.log(jsonDataSongsAlbum);
-                        var songsAlb=[];
-                        var reviewsAlb=[];
-                        var allRating=0;
+                        .defer(d3.json, "https://music-api.musikki.com/v1/songs?q=[release-mkid:" + albumidCall + "]&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId)
+                        .defer(d3.json, "https://music-api.musikki.com/v1/releases/" + albumidCall + "/reviews?&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId)
+                        .await(function (error, jsonDataSongsAlbum, jsonDataReviewsAlbum) {
+                            //console.log(jsonDataSongsAlbum);
+                            var songsAlb = [];
+                            var reviewsAlb = [];
+                            var allRating = 0;
+
                             for (var k = 0; k < jsonDataReviewsAlbum.results.length; k++) {
                                 if (jsonDataReviewsAlbum.results[k].length != 0 && jsonDataReviewsAlbum.results[k].rating != null) {
                                     reviewsAlb.push({
@@ -266,38 +268,41 @@ function gatherDataArtist() {
                             }
 
 
+                            for (var u = 0; u < reviewsAlb.length; u++) {
 
-                        for(var u=0; u<reviewsAlb.length;u++){
+                                if (reviewsAlb.length != 0 && reviewsAlb[u].rating != null) {
+                                    allRating += (reviewsAlb[u].rating.value / reviewsAlb[u].rating.scale) / reviewsAlb.length;
+                                }
+                                else {
+                                    allRating = null;
+                                }
 
-                            if(reviewsAlb.length !=0 && reviewsAlb[u].rating !=null){
-                                allRating += (reviewsAlb[u].rating.value/reviewsAlb[u].rating.scale)/reviewsAlb.length;
                             }
-                            else{allRating=null;}
 
-                        }
+                            for (var k = 0; k < jsonDataSongsAlbum.results.length; k++) {
+                                songsAlb.push({
+                                    songTitle: jsonDataSongsAlbum.results[k].title,
+                                    songlength: jsonDataSongsAlbum.results[k].length,
+                                    songMKid: jsonDataSongsAlbum.results[k].mkid
+                                })
+                            }
 
-                        for(var k=0;k<jsonDataSongsAlbum.results.length;k++){
-                            songsAlb.push({
-                                songTitle: jsonDataSongsAlbum.results[k].title,
-                                songlength: jsonDataSongsAlbum.results[k].length,
-                                songMKid: jsonDataSongsAlbum.results[k].mkid
-                            })
-                        }
-                        var dateTemp;
-                        if(js.date.year !=null ){
-                        artistAlbums.push({
-                            year: js.date.year,
-                            albumName: js.title,
-                            cover: js.cover,
-                            albumMkid: js.mkid,
-                            type: js.type,
-                            label: js.main_label,
-                            albumSongs: songsAlb,
-                            //albumReviews:jsonDataReviewsAlbum.results
-                            albumReviews: reviewsAlb,
-                            albumReviewAvg:allRating
-                        })}
-                    })
+                            if (js.date.year != null) {
+                                artistAlbums.push({
+                                    year: js.date.year,
+                                    albumName: js.title,
+                                    cover: js.cover,
+                                    albumMkid: js.mkid,
+                                    type: js.type,
+                                    label: js.main_label,
+                                    albumSongs: songsAlb,
+                                    //albumReviews:jsonDataReviewsAlbum.results
+                                    albumReviews: reviewsAlb,
+                                    albumReviewAvg: allRating
+                                })
+                            }
+                        })
+
                 }
             }
         })
@@ -341,6 +346,8 @@ function gatherDataArtist() {
 
     console.log("********************** gatherDataArtist************************************************");
     console.log(myArtistJSON);
+    loadInitialData();
+    setTimeout(loadDataTree,20000);
     console.log("***************************************************************************************")
 }
 

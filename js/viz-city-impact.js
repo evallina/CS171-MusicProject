@@ -2,10 +2,10 @@
  * Created by Enol Vallina on 12/9/2016.
  */
 //LAYOUT VARIABLES////////////////////////////////////////////////////////////////////////////////////
-var margin2 = {top: 40, right: 0, bottom: 10, left: 60};
+var margin2 = {top: 40, right: 40, bottom: 10, left: 60};
 
-var width2 = 1000 - (margin.left + margin.right),
-    height2 = 600 - (margin.top + margin.bottom);
+var width2 = 1200 - (margin.left + margin.right),
+    height2 = 800 - (margin.top + margin.bottom);
 
 var height22=height/2;
 
@@ -180,7 +180,6 @@ function loadDataImpactViz(){
             event:ArrayDates[i]
         })
     }
-    //console.log("ultimate JSON file by Date",myJSONeventsByDate)
 
     data01=myJSONeventsByDate;
     setTimeout(updateImpactViz,1000);
@@ -237,7 +236,7 @@ function updateImpactViz(){
 //SANITATION BARS
     bars1.enter()
         .append("rect")
-        .attr("class", "bars01")
+        .attr("class", "bars01");
     // .attr("fill", colorSanitation)
     //.attr("fill-opacity", opacityX)
 
@@ -254,17 +253,17 @@ function updateImpactViz(){
     //WATER BARS
     bars2.enter()
         .append("rect")
-        .attr("class", "bars02")
+        .attr("class", "bars02");
 
 
     bars2.transition().duration(1500)
         .attr("x", function(d) { return x(d.date)+xVariable; })
         .attr("y", function(d) { return y2(d.avgPopularity); })
         .attr("width", x.rangeBand()-5)
-        .attr("height",80)
+        //.attr("height",80)
         .attr("height", function(d) { return height22 - y2(d.avgPopularity); })
         .attr("fill", colorPopulation)
-        .attr("fill-opacity", 0.4)
+        .attr("fill-opacity", 0.4);
 
     bars2.exit().remove();
 
@@ -272,7 +271,7 @@ function updateImpactViz(){
     bars3.enter()
         .append("rect")
         .attr("class", "bars03")
-
+    ;
 
     bars3.transition().duration(1500)
         .attr("x", function(d) { return x(d.date); })
@@ -281,6 +280,7 @@ function updateImpactViz(){
         .attr("height", function(d) { return y3(d.totalCapacity); })
         .attr("fill", colorPopulation)
     ;
+
     bars3.exit().remove();
 
 
@@ -291,7 +291,6 @@ function updateImpactViz(){
         })
         .call(xAxis)
 
-
     svg3.selectAll("text")
         .attr("y", 0)
         .attr("x", 0)
@@ -300,7 +299,10 @@ function updateImpactViz(){
         .style("text-anchor", "start")
     ;
     svg3.select("g.y-axis").transition().duration(1500).call(yAxis);
-    svg3.select("g.y-axis3").transition().duration(1500).call(yAxis3);
+    svg3.select("g.y-axis3")
+        .attr("transform", "translate("+1100+",0)")
+        .transition().duration(1500).call(yAxis3);
+
     svg3.select("g.y-axis2").attr("transform","translate(0,"+(height22+chartdowOffset)+")")
         .transition().duration(1500)
         .call(yAxis2);
