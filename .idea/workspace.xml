@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1446fe78-490b-4b03-82ac-f183bb31b272" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BandFootprint.html" afterPath="$PROJECT_DIR$/BandFootprint.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/bandSearch.js" afterPath="$PROJECT_DIR$/js/bandSearch.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/loadingData.js" afterPath="$PROJECT_DIR$/js/loadingData.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/mainEv.js" afterPath="$PROJECT_DIR$/js/mainEv.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/map-data.js" afterPath="$PROJECT_DIR$/js/map-data.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/tree-viz.js" afterPath="$PROJECT_DIR$/js/tree-viz.js" />
     </list>
     <ignored path="Midterm_ev00.iws" />
@@ -68,7 +61,7 @@
             <file leaf-file-name="band-badge.js" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/js/band-badge.js">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="459">
+                  <state relative-caret-position="-153">
                     <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
                     <folding />
                   </state>
@@ -106,11 +99,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="loadingData.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="loadingData.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/loadingData.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="514">
-              <caret line="451" column="0" selection-start-line="451" selection-start-column="0" selection-end-line="451" selection-end-column="0" />
+              <caret line="330" column="29" selection-start-line="330" selection-start-column="29" selection-end-line="330" selection-end-column="29" />
               <folding>
                 <element signature="e#0#49#0" expanded="false" />
               </folding>
@@ -121,8 +114,8 @@
       <file leaf-file-name="viz-city-impact.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/viz-city-impact.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="659">
-              <caret line="312" column="24" selection-start-line="312" selection-start-column="24" selection-end-line="312" selection-end-column="24" />
+            <state relative-caret-position="715">
+              <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
               <folding>
                 <element signature="e#0#48#0" expanded="false" />
               </folding>
@@ -133,8 +126,8 @@
       <file leaf-file-name="tree-viz.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/tree-viz.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="100" column="23" selection-start-line="100" selection-start-column="23" selection-end-line="100" selection-end-column="23" />
+            <state relative-caret-position="275">
+              <caret line="190" column="32" selection-start-line="190" selection-start-column="32" selection-end-line="190" selection-end-column="32" />
               <folding>
                 <element signature="e#0#49#0" expanded="false" />
               </folding>
@@ -177,11 +170,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BandFootprint.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BandFootprint.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BandFootprint.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1083">
-              <caret line="172" column="21" selection-start-line="172" selection-start-column="21" selection-end-line="172" selection-end-column="21" />
+            <state relative-caret-position="85">
+              <caret line="74" column="36" selection-start-line="74" selection-start-column="36" selection-end-line="74" selection-end-column="36" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#8;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="e#7722#9540#0" expanded="false" />
@@ -224,12 +217,12 @@
         <option value="$PROJECT_DIR$/js/band-badge.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/mainEv.js" />
-        <option value="$PROJECT_DIR$/js/loadingData.js" />
-        <option value="$PROJECT_DIR$/js/tree-viz.js" />
         <option value="$PROJECT_DIR$/js/bandSearch.js" />
         <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/BandFootprint.html" />
         <option value="$PROJECT_DIR$/js/map-data.js" />
+        <option value="$PROJECT_DIR$/js/tree-viz.js" />
+        <option value="$PROJECT_DIR$/js/loadingData.js" />
       </list>
     </option>
   </component>
@@ -365,12 +358,12 @@
       <workItem from="1480386966759" duration="27396000" />
       <workItem from="1480533088366" duration="162060000" />
       <workItem from="1481387173823" duration="16464000" />
-      <workItem from="1481408271616" duration="45439000" />
+      <workItem from="1481408271616" duration="50694000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="442389000" />
+    <option name="totallyTimeSpent" value="447644000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1018" height="1057" extended-state="0" />
@@ -664,26 +657,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/loadingData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="451" column="0" selection-start-line="451" selection-start-column="0" selection-end-line="451" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#49#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/viz-city-impact.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="659">
-          <caret line="312" column="24" selection-start-line="312" selection-start-column="24" selection-end-line="312" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#48#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/bandSearch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1063">
@@ -713,7 +686,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/band-badge.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
+        <state relative-caret-position="-153">
           <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
           <folding />
         </state>
@@ -729,24 +702,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/BandFootprint.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="74" column="36" selection-start-line="74" selection-start-column="36" selection-end-line="74" selection-end-column="36" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#8;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#7722#9540#0" expanded="false" />
+            <marker date="1481509233795" expanded="false" signature="5875:5887" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/viz-city-impact.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="715">
+          <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#48#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/tree-viz.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="100" column="23" selection-start-line="100" selection-start-column="23" selection-end-line="100" selection-end-column="23" />
+        <state relative-caret-position="275">
+          <caret line="190" column="32" selection-start-line="190" selection-start-column="32" selection-end-line="190" selection-end-column="32" />
           <folding>
             <element signature="e#0#49#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BandFootprint.html">
+    <entry file="file://$PROJECT_DIR$/js/loadingData.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1083">
-          <caret line="172" column="21" selection-start-line="172" selection-start-column="21" selection-end-line="172" selection-end-column="21" />
+        <state relative-caret-position="514">
+          <caret line="330" column="29" selection-start-line="330" selection-start-column="29" selection-end-line="330" selection-end-column="29" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#8;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#7722#9540#0" expanded="false" />
-            <marker date="1481509233795" expanded="false" signature="5875:5887" ph="..." />
+            <element signature="e#0#49#0" expanded="false" />
           </folding>
         </state>
       </provider>

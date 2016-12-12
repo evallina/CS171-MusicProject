@@ -42,7 +42,7 @@ function loadDataTree() {
     })
 
     newJSON.push({
-        "name": "Gigography",
+        "name": "Gigography (Last Concerts)",
         "parent": workingJSON.artistName,
         "relation": "null",
         "depth": 1
@@ -58,168 +58,76 @@ function loadDataTree() {
             "depth": 2
         })
         newJSON.push({
-            "name": "Songs",
-            "parent": workingJSON.artistAlbums[i].albumName,
-            "relation": i,
-            "depth": 3
-        })
-        newJSON.push({
-            "name": workingJSON.artistAlbums[i].year,
+            "name": "TYPE: "+workingJSON.artistAlbums[i].type,
             "parent": workingJSON.artistAlbums[i].albumName,
             "relation": "null",
             "depth": 3
         })
 
+        if(workingJSON.artistAlbums[i].label!=null){
+            newJSON.push({
+                "name": "LABEL: "+ workingJSON.artistAlbums[i].label.name,
+                "parent": workingJSON.artistAlbums[i].albumName,
+                "relation": "null",
+                "depth": 3
+            })
+        }
+        else{
+            newJSON.push({
+                "name": "LABEL:"+"n/a",
+                "parent": workingJSON.artistAlbums[i].albumName,
+                "relation": "null",
+                "depth": 3
+            })
+        }
+
+
+        newJSON.push({
+            "name": "YEAR: "+workingJSON.artistAlbums[i].year,
+            "parent": workingJSON.artistAlbums[i].albumName,
+            "relation": "null",
+            "depth": 3
+        })
+/*
         for (var j = 0; j < workingJSON.artistAlbums[i].albumSongs.length; j++) {
             newJSON.push({
                 "name": workingJSON.artistAlbums[i].albumSongs[j].songTitle,
                 "parent": "Songs",
-                "relation": i,
-                "depth": 4
+                "relation": "null",
+                "depth": 2
             })
-        }
+        }*/
     }
-    newJSON.push({
-        "name": "60's",
-        "parent": "Gigography",
-        "relation": "null",
-        "depth": 2
-    })
-    newJSON.push({
-        "name": "70's",
-        "parent": "Gigography",
-        "relation": "null",
-        "depth": 2
-    })
-    newJSON.push({
-        "name": "80's",
-        "parent": "Gigography",
-        "relation": "null",
-        "depth": 2
-    })
-    newJSON.push({
-        "name": "90's",
-        "parent": "Gigography",
-        "relation": "null",
-        "depth": 2
-    })
-    newJSON.push({
-        "name": "00's",
-        "parent": "Gigography",
-        "relation": "null",
-        "depth": 2
-    })
-    newJSON.push({
-        "name": "10's",
-        "parent": "Gigography",
-        "relation": "null",
-        "depth": 2
-    })
-    console.log("hhhhhhhhhhhhhhhhh",workingJSON.artistPastGigs.length);
+    var GigsRun=50;
+    var GigsIndex= workingJSON.artistPastGigs.length-(GigsRun+1);
 
-    for (var i = 0; i < /*workingJSON.artistPastGigs.length*/1600; j++) {
-        //var dateTemp;
-        var dateTemp = (parseInt(workingJSON.artistPastGigs[i].date.substr(0, 4)));
-
-        console.log("dataTemp",dateTemp);
-        if (dateTemp >= 1960 && dateTemp < 1970) {
-            for (var i = 0; i < workingJSON.artistPastGigs.length; i++) {
-                newJSON.push({
-                    "name": workingJSON.artistPastGigs[i].date,
-                    "parent": "60's",
-                    "relation": "null",
-                    "depth": 3
-                })
-                dateTemp = 0;
-            }
-        }
-        if (dateTemp >= 1960 && dateTemp < 1970) {
-            for (var i = 0; i < workingJSON.artistPastGigs.length; i++) {
-                newJSON.push({
-                    "name": workingJSON.artistPastGigs[i].date,
-                    "parent": "70's",
-                    "relation": "null",
-                    "depth": 3
-                })
-                dateTemp = 0;
-            }
-        }
-        if (dateTemp >= 1970 && dateTemp < 1980) {
-            for (var i = 0; i < workingJSON.artistPastGigs.length; i++) {
-                newJSON.push({
-                    "name": workingJSON.artistPastGigs[i].date,
-                    "parent": "80's",
-                    "relation": "null",
-                    "depth": 3
-                })
-                dateTemp = 0;
-            }
-        }
-        if (dateTemp >= 1980 && dateTemp < 1990) {
-            for (var i = 0; i < workingJSON.artistPastGigs.length; i++) {
-                newJSON.push({
-                    "name": workingJSON.artistPastGigs[i].date,
-                    "parent": "90's",
-                    "relation": "null",
-                    "depth": 3
-                })
-                dateTemp = 0;
-            }
-        }
-        if (dateTemp >= 1990 && dateTemp < 2000) {
-            for (var i = 0; i < workingJSON.artistPastGigs.length; i++) {
-                newJSON.push({
-                    "name": workingJSON.artistPastGigs[i].date,
-                    "parent": "00's",
-                    "relation": "null",
-                    "depth": 3
-                })
-                dateTemp = 0;
-            }
-        }
-        if (dateTemp >= 2010) {
-            for (var i = 0; i < workingJSON.artistPastGigs.length; i++) {
-                newJSON.push({
-                    "name": workingJSON.artistPastGigs[i].date,
-                    "parent": "10's",
-                    "relation": "null",
-                    "depth": 3
-                })
-                dateTemp = 0;
-            }
-        }
-    }
+    console.log("DATA of GIGS TO ANALIZE",GigsIndex);
+    console.log("*******************", workingJSON.artistPastGigs);
 
 
-    /*
-    for(var i=0; i<workingJSON.artistPastGigs.length; i++){
+    for (var i = GigsIndex; i < (GigsIndex+GigsRun); i++) {
+
         newJSON.push({
-            "name": workingJSON.artistPastGigs[i].date,
-            "parent": "Gigography",
-            "relation":"null",
+            "name": workingJSON.artistPastGigs[i].venueLocation,
+            "parent": "Gigography (Last Concerts)",
+            "relation": "null",
             "depth": 2
         })
         newJSON.push({
-            "name": workingJSON.artistPastGigs[i].venueLocation,
-            "parent": workingJSON.artistPastGigs[i].date,
-            "relation":"null",
+            "name": "DATE: "+workingJSON.artistPastGigs[i].date,
+            "parent": workingJSON.artistPastGigs[i].venueLocation,
+            "relation": "null",
             "depth": 3
         })
-        newJSON.push({
-            "name": workingJSON.artistPastGigs[i].venueName,
-            "parent": workingJSON.artistPastGigs[i].date,
-            "relation":"null",
-            "depth": 3
-        })
-        newJSON.push({
-            "name": workingJSON.artistPastGigs[i].popularity,
-            "parent": workingJSON.artistPastGigs[i].date,
-            "relation":"null",
-            "depth": 3
-        })
-    }
-*/
 
+        newJSON.push({
+            "name": "VENUE: "+workingJSON.artistPastGigs[i].venueName,
+            "parent": workingJSON.artistPastGigs[i].venueLocation,
+            "relation": "null",
+            "depth": 3
+        })
+
+    }
 
 data=newJSON;
 console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhh",data);

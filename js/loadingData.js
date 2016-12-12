@@ -256,7 +256,7 @@ function gatherDataArtist() {
 
                     }
 
-                    console.log("jsonDataSongsAlbum",AllAlbumsClean.title+ ": " + jsonDataSongsAlbum);
+                    //console.log("jsonDataSongsAlbum",AllAlbumsClean.title+ ": " + jsonDataSongsAlbum);
 
                     for (var k = 0; k < jsonDataSongsAlbum.results.length; k++) {
                         songsAlb.push({
@@ -328,7 +328,7 @@ function gatherDataArtist() {
     console.log("********************** gatherDataArtist************************************************");
     console.log(myArtistJSON);
     loadInitialData();
-    setTimeout(loadDataTree,20000);
+    setTimeout(loadDataTree,3000);
     console.log("***************************************************************************************")
 }
 
@@ -453,7 +453,7 @@ function createVis() {
     updateBandBadge2();
 
     gatherAlbums();
-    console.log("ALLLLLLLLL ALBUMSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",allAlbums);
+    console.log("ALLLLLLLLL ALBUMSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",allAlbums);
     setTimeout(gatherDataArtist,5000);
 
     loadWorldMap();
@@ -468,31 +468,3 @@ function createVisMap(){
 
 }
 
-
-
-
-//d3.json("https://music-api.musikki.com/v1/artists?q=[artist-name:" + artistname + "]&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId,
-//https://music-api.musikki.com/v1/artists/" + newArtistMKid + "?&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId,
-/*
-function ArtistInfoRequest(artistname) {
-    d3.json("https://music-api.musikki.com/v1/artists?q=[artist-name:" + artistname + "]&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId,
-        function (error, jsonData) {
-            console.log("request ID222**********************************************************");
-        console.log(jsonData);
-        if( jsonData.results.length != 0){
-            //Find the MKID For the Band
-            var newArtistMKid = jsonData.results[0].mkid;
-            console.log(">>>>Request ID*********************************************************");
-            console.log(newArtistMKid);
-            d3.json("https://music-api.musikki.com/v1/artists/" + newArtistMKid + "?&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId,
-                function (error, newdataBandInfo) {
-                    console.log(">>>request GENRE***********************************************");
-                    console.log(newdataBandInfo.result.genres[0].name);
-                })
-        }
-        else {
-            console.log("null")
-            return null;}
-    })
-}
-*/
