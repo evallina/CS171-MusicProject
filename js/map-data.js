@@ -6,6 +6,7 @@
 
 // how do i feed it an id / name of band?
 var allGigs = [];
+var TourTravel = null;
 
 //
 // if given a specific artistID, it should return a list of all of the objects and their associated events, lat, lng, etc
@@ -28,6 +29,7 @@ var coords = [];
 // go to ocation and get the lat and lng
 // store each value in new_item, which should then create our new list coords, which should have all the coordinates
 function get_coordinate_tour(gigs) {
+    coords = [];
     gigs = gigs["resultsPage"]["results"]["event"]
     // console.log("gigs")
 
@@ -56,7 +58,9 @@ function get_coordinate_tour(gigs) {
 var bubbleInfo = []
 var timeknotInfo = []
 function get_bubble_data(bubbleData) {
-    bubbleData = bubbleData["resultsPage"]["results"]["event"]
+    bubbleData = bubbleData["resultsPage"]["results"]["event"];
+    bubbleInfo = [];
+    timeknotInfo = [];
 
     var nBubble = bubbleData.length;
     for (var i = 0; i<nBubble; i++) {
@@ -98,16 +102,25 @@ function get_bubble_data(bubbleData) {
 
 
 function createTour() {
-
-    var TourTravel = new Datamap({
+    if (TourTravel) {
+        TourTravel.svg.remove();
+        TourTravel.svg.selectAll(".arcs").remove();
+        // d3.selectAll("#datamaps-bubble").remove();
+        // TourTravel.svg.selectAll("")
+        // TourTravelbubbles.exit().remove();
+    }
+    // console.log(d3.selectAll("#datamap"));
+    TourTravel = new Datamap({
         scope: 'world',
         element: document.getElementById('arcs'),
         projection: 'mercator',
+        height: 800,
+        width: 1000,
         fills: {
             // color of background map
-            defaultFill: '#f0af0a',
+            defaultFill: 'rgb(220,220,220)',
             // color of bubble
-            bubbleColor: 'rgba(0,244,244,0.9)'
+            bubbleColor: 'rgba(232,185,65,0.9)'
         },
         done: function(datamap) {
             datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
@@ -127,7 +140,12 @@ function createTour() {
                 '</div>'].join('');
         }
     });
-    TourTravel.arc(gigRoute, {arcSharpness: .9, strokeWidth: 1.5});
+    TourTravel.arc(gigRoute, {
+        arcSharpness: .9,
+        strokeWidth: 0.75,
+        strokeColor:'rgba(20,20,20,0.5)',
+        animationSpeed:2000
+    });
 
     TourTravel.svg.call(d3.behavior.zoom()
         .on("zoom", redraw));
@@ -135,7 +153,6 @@ function createTour() {
     function redraw() {
         TourTravel.svg.selectAll("g").attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
     };
-
 };
 
 
@@ -151,6 +168,10 @@ function createTour() {
 
 // can get from musikki api?
 function drawTimeKnots() {
+    // if (TimeKnots) {
+    //     TourTravel.svg.remove();
+    // }
+    d3.selectAll("#timeline1").html("");
     TimeKnots.draw("#timeline1", timeknotInfo, {
         dateFormat: "%B %Y",
         color: "#696",

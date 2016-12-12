@@ -5,12 +5,10 @@ var Musikki_AppKey="c748d725e8b3391af04d45896c196e8d";
 
 //VARIABLES*//////////////////////////////////////////////////////////////////////////////////////////////////////////
 var dataArtist;
-
 var artistMKid; //id to identify other Band related searches.
 
 
 //SEARCH BOX//////////////////////////////////////////////////////////////////////////////////////////////////////////
-var defaultText = "Search...";
 var searchBox;
 var bandToSearch="Beatles";
 //var bandToSearch=searchBox;
@@ -67,6 +65,7 @@ function updateVisualization() {
     //searchResult = d3.select("#band-search").property("text");
 
     showBandInfo(dataArtist);
+    showBandInfo2(dataArtist);
 }
 
 
@@ -94,14 +93,45 @@ function showBandInfo(d){
         //else{bandMusicGenre2=d.results[0].genres[0].name;}
     }
 
-    document.getElementById("info-band").innerHTML=
+    document.getElementById("message02").innerHTML=
         "<h2><b>" + d.results[0].name +/*"</b>/ Test Search: "+ searchBox +*/"</h2>" +
             "<p><b>"+"- Foundation: </b>"+ foundationyear2 +"</p>"+
             "<p><b>"+"- Music Genre: </b>"+bandMusicGenre2 +"</p>"+
             "<p><b>"+"- Current Label: </b>"+bandCurrentLabel +"</p>"+
             "<img class=img-circle src="+d.results[0].image+" alt="+d.results[0].name+" >"
     ;
+
 }
+
+
+function showBandInfo2(d){
+    //VARIABLES
+    var foundationyear2;
+    var bandMusicGenre2;
+    var bandCurrentLabel;
+
+    //CHECK IF NULL LABEL
+    if(d.results[0].current_labels == null){bandCurrentLabel="n/a"}
+    else{ bandCurrentLabel=d.results[0].current_labels[0].name};
+
+    //CHECK IF NULL FOUNDATION YEAR
+    if(d.results[0].dates == null){foundationyear2="n/a"}
+    else{ foundationyear2=d.results[0].dates.start.year};
+
+    //CHECK IF NULL MUSIC GENRE
+    if(d.results[0].genres == null){bandMusicGenre2="n/a"}
+    else{
+        if(d.results[0].genres.length > 3){bandMusicGenre2= d.results[0].genres[0].name +"/"+d.results[0].genres[1].name+"/"+d.results[0].genres[2].name;}
+
+        //else{bandMusicGenre2=d.results[0].genres[0].name;}
+    }
+
+    document.getElementById("message02").innerHTML=
+        "So <h2><b>" + d.results[0].name +"</h2>" +" it is!"
+    ;
+}
+
+
 
 function checkNull(d,endVar){
     if(d==null){return "n/a"}

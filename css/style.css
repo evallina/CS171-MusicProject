@@ -2,7 +2,76 @@ body{
     font-family: 'Roboto';
 
 }
+/* YOUR CSS STYLES */
+#message01{
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(255,255,255);
 
+    background-image: url("img/OscarKeys_01.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 35%;
+    padding-top: 25%;
+}
+#venue-map{
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+#message02{
+
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(255,255,255);
+
+    background-image: url("img/OscarKeys_01.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 35%;
+    padding-top: 25%;
+}
+#message03{
+
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(255,255,255);
+
+    background-image: url("img/Veeterzy_01.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 35%;
+    padding-top: 25%;
+}
+#message04{
+
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(255,255,255);
+
+    background-image: url("img/KarinaCarvalho_01.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 35%;
+    padding-top: 25%;
+}
+
+
+
+#tree-viz{
+    background: rgb(20,20,20);
+}
 /* YOUR CSS STYLES */
 #info-band{
     padding-bottom: 2%;
@@ -15,7 +84,14 @@ body{
     padding-top: 2%;
 
 }
-
+#project-summary{
+    background: rgb(20,20,20);
+    color: white;
+    padding-top: 25%;
+    padding-bottom: 25%;
+    padding-left: 20%;
+    padding-right: 20%;
+}
 
 #band-history{
     background: rgb(180,180,180);
@@ -497,17 +573,22 @@ h6{
 }
 
 .node circle {
-    fill: #fff;
-    stroke: steelblue;
+    fill: rgb(80,80,80);
+    stroke: rgb(180,180,180);
     stroke-width: 1.5px;
 }
 
 .node text {
-    font: 10px sans-serif;
+    font-family: Roboto;
+    font-size: 10px;
+    font-weight: 900;
+    color: white;
+    fill: white;
+
 }
 
 .link {
     fill: none;
-    stroke: #ccc;
+    stroke: rgb(50,50,50);
     stroke-width: 1.5px;
 }
