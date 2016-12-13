@@ -18,26 +18,24 @@ var Spotify_APIclient="0670b8e616044845ac7905baac575a4d";
 //https://music-api.musikki.com/v1/songs?q=[release-mkid:"+100564335+"]&appkey=c748d725e8b3391af04d45896c196e8d&appid=c1e2711f8daf4c2ecaf1290bd66130e6
 
 // DATA VARIABLES
-var dataArtist2;
 var artistMKid2;
 var artistSKid;
 
 var dataBandAlbums;
-var dataBandYearsActive;
-var dataBandGroupMembers;
 var dataBandSongs;
-var dataBandPopularity;
 var songkickdata;
 
 //DATA VARIABLES VALUES
 var bandAlbumsTotal;
 var bandMembersTotal;
-var bandSongsTotal;
 var bandConcertsLastYear;
 
 var bandYearsActiveTotal;
 var bandStartYear;
 var bandEndYear;
+var bandListenMusic;
+
+var LastGigNewyork=[];
 
 //VISUALIZATION VARIABLES
 var test;
@@ -188,9 +186,9 @@ function loadDataSKVenues() {
         //DATA CHECK
         console.log("myEventJSON/////////////////////////////////////////////////////////////////////////////////");
         console.log(myEventJSON);
+            setTimeout(createVisMap,15000);
 
         })
-
 }
 var allAlbums=[];
 function gatherAlbums(){
@@ -295,6 +293,9 @@ function gatherDataArtist() {
             var nArrayResults=jsonDataSK.resultsPage.results.event.length;
 
             for(var j=0;j<nArrayResults;j++){
+                if(jsonDataSK.resultsPage.results.event[j].venue.metroArea.displayName=="New York"){
+                    LastGigNewyork=jsonDataSK.resultsPage.results.event[j];
+                }
                 var js= jsonDataSK.resultsPage.results.event[j];
                 artistEvents.push({
                     date:js.start.date,
@@ -329,6 +330,9 @@ function gatherDataArtist() {
     console.log(myArtistJSON);
     loadInitialData();
     setTimeout(loadDataTree,3000);
+    setTimeout(textNYBand,3000);
+
+    //createVisMap();
     console.log("***************************************************************************************")
 }
 
@@ -395,8 +399,11 @@ function loadDataMK() {
                 .defer(d3.json, "https://music-api.musikki.com/v1/artists/" + artistMKid2 + "/songs?&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId)
                 //Band Releases Full
                 .defer(d3.json, "https://music-api.musikki.com/v1/artists/" + artistMKid2 + "/releases?&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId)
+                //Band Listen
+                .defer(d3.json, "https://music-api.musikki.com/v1/artists/" + artistMKid2 + "/listen?&appkey=" + Musikki_AppKey + "&appid=" + Musikki_AppId)
 
-                .await(function (error, dataBandInfo, dataBandReleases, dataBandSongs1,dataBandReleasesFull) {
+
+                .await(function (error, dataBandInfo, dataBandReleases, dataBandSongs1,dataBandReleasesFull, dataBandListen) {
                     //Test Data on Console
                     console.log("Band Musikki ID");
                     console.log(artistMKid2);
@@ -407,9 +414,16 @@ function loadDataMK() {
                     console.log(dataBandReleasesFull);
                     console.log("Band Songs");
                     console.log(dataBandSongs1);
-                    console.log("Songkick");
-                    //console.log(dataSongkick);
+                    console.log("Listen Band");
+                    console.log(dataBandListen);
 
+                    var bandListenMusicTemp=dataBandListen.results;
+                    for(var i=0;i<bandListenMusicTemp.length;i++){
+                        if(bandListenMusicTemp[i].service.name=="spotify"){ bandListenMusic=bandListenMusicTemp[i]; }
+                        else{bandListenMusic=null;}
+                    }
+                    console.log("Listen Band22");
+                    console.log(bandListenMusic);
                     // PROCESS DATA////////////////////////////////////////////////////////////////////////////////////
                     // Band Info
                     bandInfo=dataBandInfo.result;
@@ -439,7 +453,7 @@ function loadDataMK() {
 
                     //DRAW VISUALIZATION FOR THE FIRST TIME ///////////////////////////////////////////////////////////
                     createVis();
-                    createVisMap();
+
                     //var venueMap = new VenueMap("venue-map", skNYresults, [40.724126, -73.984972]);
 
                 });

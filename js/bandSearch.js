@@ -78,15 +78,48 @@ function showBandInfo(){
     ;
     document.getElementById("message02").innerHTML=
         "...so " + d.name +" it is!"+
-        "</br></br></br><img class='img-circle' src="+d.image+" alt="+d.name+" style=width:600px;height:600px;>"
+        "</br></br></br><img class='img-circle' src="+d.image+" alt="+d.name+" style=width:600px;height:600px;>"+
+        "</br><h4>a visualization about music without music? let's play!</h4> "    +
+        "<iframe src=https://embed.spotify.com/?uri="+ bandListenMusic.app_url +" width=400 height=80 frameborder=0 allowtransparency=true></iframe>"
     ;
     document.getElementById("message03").innerHTML=
-        "now that we have an overall picture of " + d.name +" and their performance history, </br>but what parts of the world have they travelled?"
+        "Now that we have an overall picture of " + d.name +" and their performance history, </br>let’s see what parts of the world they’ve toured"
     ;
-    document.getElementById("message04").innerHTML=
-        "Do you know that the last time " + d.name +" played in New York was in"+" {year} "+"?"
-    ;
+/*    Now that we have an overall picture of U2 and their performance history,
+        let’s see what parts of the world they’ve toured*/
+/*
+    document.getElementById("messagePlay").innerHTML=
+        //<iframe src="https://embed.spotify.com/?uri=spotify:artist:4Z8W4fKeB5YxbusRsdQVPb" width="640" height="80" frameborder="0" allowtransparency="true"></iframe>
+        /!*"<iframe src=https://embed.spotify.com/?uri="+ bandListenMusic.app_url +" width=640 height=80 frameborder=0 allowtransparency=true></iframe>"*!/
+        //<iframe src="https://embed.spotify.com/?uri="+XXXX+" width="640" height="80" frameborder="0" allowtransparency="true"></iframe>
+    ;*/
 
+
+
+
+}
+
+function textNYBand() {
+    var testNY;
+
+    if (LastGigNewyork != null) {
+        var justTheYear=LastGigNewyork.start.date.substr(0,4);
+        if (LastGigNewyork.venue.displayName != null && LastGigNewyork.start.date != null) {
+            testNY = "In our records, the last time " + bandInfo.name + " played in New York was in " + justTheYear + " at " + LastGigNewyork.venue.displayName
+            ;
+        }
+        else if (LastGigNewyork.venue.displayName != null) {
+            testNY = "Do you know that the last time " + bandInfo.name + " played in New York was in " + LastGigNewyork.start.date + "?"
+        }
+        else if (LastGigNewyork.start.date != null) {
+            testNY = "Do you know that the last time " + bandInfo.name + " played in New York was at " + LastGigNewyork.start.date + "?"
+        }
+    }
+
+    else {
+        testNY = "New York is considered one of the most important cities to perform";
+    }
+    document.getElementById("message04").innerHTML = testNY
 }
 
 function checkNull(d,endVar){

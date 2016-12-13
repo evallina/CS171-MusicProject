@@ -61,23 +61,24 @@
     Music Footprint
 </div>
 <div >
-    <div class="col-lg-12 col-md-12 col-sm12" id="project-summary"><h2><b> Project Summary</b></h2>
-        <p>
-            The music industry has experienced dramatic changes in the past two
-            decades. The digitalization of music along with the increasing prevalence
-            of Internet access has created new challenges and opportunities for
-            record companies, concert promoters, and artists. It does not come as a
-            surprise that these shifts have impacted the earnings model in the music
-            industry in terms of album and concert ticket sales (Caves 2003; Gopal et
-            al. 2006). According to data from the Recording Industry Association of
-            America (RIAA) the turnover from recorded music sales fell by 43 percent
-            between 2004 and 2013. Despite the enormous growth of almost
-            2,300 percent in the same period, digital shipments have not been able
-            to make up for this decline.<br/>
-            Adam Fer & Barbara Baarsma<br/>
-            Rockonomics revisited: The rise of music streaming
-            services and the effect on the concert industry
-        </p>
+    <div class="col-lg-12 col-md-12 col-sm12" id="project-summary"><h3><b> Introduction</b></h3>
+        <p>How well do you know your favorite artist? Do you think you can name every one of their songs,
+            let alone the albums?&nbsp;&nbsp;Have you ever wondered what it&rsquo;s like to be in their
+            shoes, touring the world, and ultimately ending up on the big stage in New York?</p>
+        <p>Here we take you on a journey alongside your favorite band, learning anything from how many
+            songs they&rsquo;ve released to where their last tour has been. Keep scrolling to learn more!</p>
+        <p>This project is brought to you by <em>Enol Vallina</em> and <em>Evan Hahn</em>. The inspiration
+            and inception came to us as we were discussing our favorite artists and how we&rsquo;d seen one
+            of our favorite bands on separate continents only weeks apart. In addition to discussing our which
+            songs and albums we liked most, we decided to look up ways of tracking the tours and couldn&rsquo;t find
+            any means of doing so. Thus began our exploration of bands&rsquo; gigographies and discographies.
+            Utilizing Songkick&rsquo;s and Musikki&rsquo;s APIs we are able to dynamically search for any artist
+            (as long as the data is present) to find information about the band history, members, songs performed,
+            concert venues, and more. <br />We chose to display this information for each band with a dynamically
+            created visualization badge, a tree with more in depth gigography, albums, and genre, and a map of previous
+            performances to see how they traveled the world. We also decided to focus on New York City as a main hub for
+            performances, taking a closer look at the venues and their capacities where many of these
+            artists have performed</p>
     </div>
 </div>
 <!--phrase link /////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -88,6 +89,13 @@
 <div >
     <div class="col-lg-12 col-md-12 col-sm12" id="message02"></div>
 </div>
+<div >
+    <div class="col-lg-12 col-md-12 col-sm12" id="messagePlay">
+<!--
+        <iframe src="https://embed.spotify.com/?uri=spotify:artist:4Z8W4fKeB5YxbusRsdQVPb" width="640" height="80" frameborder="0" allowtransparency="true"></iframe>
+-->
+    </div>
+</div>
 
 <div class="container">
     <div class="row">
@@ -97,6 +105,15 @@
         </div>
     </div>
 </div>
+
+<div class="col-lg-12 col-md-12 col-sm12" id="message08">
+    <h2><b> How Active is the band?</b></h2>
+    <p>
+        Overview of their discography and their last concerts.
+    </p>
+</div>
+
+
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm12" id="tree-viz"><i>(tree map: it takes a few seconds to initialize )</i></div>
 </div>
@@ -107,9 +124,16 @@
 <div id="data">
     <br/>
 </div>
-
+<div >
+    <div class="col-lg-12 col-md-12 col-sm12" id="message07">
+        <h2><b> Footprint in the Global Scale</b></h2>
+        <p>
+            How music travels? What is the impact of the performances? The map below shows the last concerts
+            the band has performed around the world. It is starting show how some territories host more gigs than another.
+        </p>
+    </div>
 <div>
-    <div class="col-lg-12 col-md-12 col-sm12" id="worldmapBand"> Territories Covered by the band
+    <div class="col-lg-12 col-md-12 col-sm12" id="worldmapBand"> <p>Territories Covered by the band</p>
         <!--<div id="container_test" style="position: relative; width: 1000px; height: 800px;"></div>-->
         <!--<script>-->
         <!--var map = new Datamap({element: document.getElementById('container')});-->
@@ -118,16 +142,17 @@
         <div id="arcs" style="position: relative; width: 600px; height: 1000px;"></div>
         <div id="container1" style="position: relative; width: 80%; max-height: 450px;"></div>
         <div id="zoom-info"></div>
-        <!--
+<!--
         <button class="zoom-button" data-zoom="reset">0</button>
         <button class="zoom-button" data-zoom="out">-</button>
         <button class="zoom-button" data-zoom="in">+</button>
-        -->
+-->
+
     </div>
 </div>
-<div>
+<!--<div>
     <div class="col-lg-12 col-md-12 col-sm12" id="timeline1"> Band History Timeline</div>
-</div>
+</div>-->
 <!--
 <div class="fluid-row">
     <div class="span3">
@@ -139,26 +164,59 @@
 <div >
     <div class="col-lg-12 col-md-12 col-sm12" id="message04"></div>
 </div>
+<div >
+    <div class="col-lg-12 col-md-12 col-sm12" id="message05">
+        <h2><b> Footprint in the Urban Scale</b></h2>
+        <h3><b> Urban Impact by Location </b></h3>
+        <p>
+            Taking the city of New York as a 'case study', we can find out where are the areas with
+            most planed performances within the city and their 'popularity' rate based on the information gathered by
+            the Songkick API.
+
+            As the number of performances can vary depending on the day of the week or even the season, we can begin
+            to understand these numbers in relation to time.
+        </p>
+    </div>
+</div>
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm12" id="venue-map">Genre Map Test - MAP</div>
+        <div class="col-lg-12 col-md-12 col-sm12" id="venue-map">NYC Map</div>
     </div>
     </br>
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm12" id="slider-date"></div>
-        </br>
+        <br>
+        <br>
+        <br>
         <div class="col-lg-12 col-md-12 col-sm12" id="event-start"></div>
         <div class="col-lg-12 col-md-12 col-sm12" id="event-end"></div>
-        <button type="button" onclick="" class="btn btn-default btn-circle btn-lg" id="update-map"><i
-                class="glyphicon glyphicon-refresh"></i></button>
-        <button type="button" onclick="" class="btn btn-default btn-circle btn-lg" id="update-map2"><i
-                class="glyphicon glyphicon-remove-sign"></i></button>
+        <br>
+        <br>
+        <br>
+        <div> Re-Calculate Data:
+            <button type="button" onclick="" class="btn btn-default btn-circle btn-lg" id="update-map"><i
+                    class="glyphicon glyphicon-refresh"></i></button>
+
+            &nbsp &nbsp Remove Data :
+            <button type="button" onclick="" class="btn btn-default btn-circle btn-lg" id="update-map2"><i
+                    class="glyphicon glyphicon-remove-sign"></i></button>
+        </div>
 
     </div>
-    <div></div>
-    <div></div>
-    <div></div>
+    <div>
+        <div class="col-lg-12 col-md-12 col-sm12" id="legend1"></div>
+    </div>
+
+    <div >
+        <div class="col-lg-12 col-md-12 col-sm12" id="message06"><h3><b> Urban Impact by Time </b></h3>
+            <p>
+                The organization of the data by date allows to discover the total number of concerts planned as well as
+                the total capacity covered if we sum all the events planed every day.
+            </p>
+        </div>
+    </div>
+
     <form class="form-inline">
         <div class="form-group">
             <label for="data-type2">Sort by...</label>
@@ -170,22 +228,25 @@
             </select>
         </div>
     </form>
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm12" id="venue-impact">Venue Impact</div>
+
+    <div class="col-lg-12 col-md-12 col-sm12" id="venue-impact"></div>
+
+    <div>
+        <div class="col-lg-12 col-md-12 col-sm12" id="legend2"></div>
     </div>
-    </br>
-    </br>
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm12" id="conclusion">final thoughts</div>
-    </div>
-    </br>
 
 </div>
 
 
 
+    <div class="row" id="credits">
+        <b>Enol Vallina / Evan Hahn</b> <br />
+        --------------------------<br />
+        CS171 [10.28.16]<br />
+    </div>
+</br>
 
-
+</div>
 
 
 <!--SKECTH LAYOUT///////////////////////////////////////////////////////////////////////////////////////////// -->

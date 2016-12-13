@@ -25,12 +25,51 @@ var alternativeIcon;
 var alternativeIcon2;
 var rockIcon;
 
-//SCALES
+var venueCapacityScale;
+var venuePopularityScale;
 
-var venueCapacityScale= d3.scale.linear().range([ 50,1500]);
-    venueCapacityScale.domain([10,50000]);
+venueCapacityScale= d3.scale.linear().range([ 50,7000]);
+venueCapacityScale.domain([10,25000]);
+venuePopularityScale= d3.scale.linear().range([ 0,255]);
+venuePopularityScale.domain([0,0.001]);
+
+
+/*console.log("LENGTH for scales!!!!!!!!!",myEventJSON.length)
+//SCALES
+if(myEventJSON.length >= 1500){
+    venueCapacityScale= d3.scale.linear().range([ 50,10000]);
+    venueCapacityScale.domain([10,25000]);
+    venuePopularityScale= d3.scale.linear().range([ 0,255]);
+    venuePopularityScale.domain([0,0.001]);
+
+}
+else if(myEventJSON.length<1500 &&myEventJSON.length>900){
+    venueCapacityScale= d3.scale.linear().range([ 50,7000]);
+    venueCapacityScale.domain([10,25000]);
+    venuePopularityScale= d3.scale.linear().range([ 0,255]);
+    venuePopularityScale.domain([0,0.001]);
+
+}
+else if(myEventJSON.length<1500 &&myEventJSON.length>900){
+    venueCapacityScale= d3.scale.linear().range([ 50,4000]);
+    venueCapacityScale.domain([10,25000]);
+    venuePopularityScale= d3.scale.linear().range([ 0,255]);
+    venuePopularityScale.domain([0,0.001]);
+
+}
+else{
+    venueCapacityScale= d3.scale.linear().range([ 50,2000]);
+    venueCapacityScale.domain([10,25000]);
+    venuePopularityScale= d3.scale.linear().range([ 0,255]);
+    venuePopularityScale.domain([0,0.001]);
+
+}*/
+/*
+var venueCapacityScale= d3.scale.linear().range([ 50,10000]);
+    venueCapacityScale.domain([10,25000]);
 var venuePopularityScale= d3.scale.linear().range([ 0,255]);
 venuePopularityScale.domain([0,0.001]);
+*/
 
 
 
@@ -40,29 +79,7 @@ VenueMap.prototype.initVis = function() {
     // set up leaflet
     vis.map = L.map(vis.parentElement)
         .setView(vis.mapCenter, 13);
-    /*
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    })
-     L.tileLayer('http://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}', {
-     maxZoom: 19,
-     attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-     });
 
-     L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
-     attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-     subdomains: 'abcd',
-     minZoom: 0,
-     maxZoom: 20,
-     ext: 'png'
-     });
-
-
-    *//*
-    L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
-        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        subdomains: 'abcd',
-        */
     L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
         attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         subdomains: 'abcd',
@@ -100,7 +117,7 @@ VenueMap.prototype.initVis = function() {
         popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
     });
 
-0
+
     rockIcon = L.icon({
         //
         iconUrl: 'css/imageicons/genres/marker-icon.png',
@@ -119,6 +136,7 @@ VenueMap.prototype.initVis = function() {
 
     //Updates
     vis.wrangleData();
+    //document.getElementById("update-map").onclick=function(){ultimateRemove()};
     document.getElementById("update-map").onclick=function(){vis.wrangleData()};
 
 }
@@ -146,13 +164,16 @@ VenueMap.prototype.wrangleData = function() {
             newData.push(vis.data[i]);
         }
     }
+
     vis.displayData=newData;
-    //vis.displayData=newData;
-    //console.log("wrangleData", vis.displayData);
+
     // Update the visualization
     vis.updateVis();
     //document.getElementById("update-map").onclick=function(){vis.updateVis()};
+
+
 }
+
 var markers = new L.FeatureGroup();
 
 VenueMap.prototype.updateVis = function() {
@@ -175,8 +196,6 @@ VenueMap.prototype.updateVis = function() {
     vis.pinGroup2 = L.layerGroup()
         .addTo(vis.map);
 
-    //for( var i=0; )
-
 
     // draw 1 pin per station
     vis.displayData.forEach(function(d) {
@@ -188,10 +207,11 @@ VenueMap.prototype.updateVis = function() {
         var cap = +d.venueCapacity;
         var pop = +d.popularity;
 
-        var popupContent = "<strong>" + d.bandName + "</strong></br>" + d.venueName +"</br><b>Capacity: </b></strong>"+d.venueCapacity;
+        var popupContent = "<strong>" + d.bandName + "</strong></br>" + d.venueName +"</br><b>Capacity: </b></strong>"+cap;
         //console.log("foreach", popupContent);
         var marker;
         var circle;
+
 
         if(pop2 != null && cap2 !=null){
             marker = L.marker([lat, lng],
@@ -228,33 +248,17 @@ VenueMap.prototype.updateVis = function() {
         vis.pinGroup2.addLayer(circle);
     });
 
-/*
-    // draw MBTA lines
-    $.getJSON("data/MBTA-Lines.json", function(mbtaData) {
-        console.log(mbtaData);
 
-        L.geoJson(mbtaData, {
-            weight: 5,
-            // opacity: 0.6,
-            style: function(feature) {
-                // T line: red, green, etc.
-                // note that these are capitalized
-                var line = feature.properties.LINE;
-                // color based off line
-                return {
-                    color: line
-                };
-            }
-        })
-            .addTo(vis.map);
-    });
-*/
-
-
+    //document.getElementById("update-map").onclick=function(){ultimateRemove()};
     document.getElementById("update-map2").onclick=function(){removeAllMarkers(vis)};
 }
 
+function ultimateRemove(){
+    removeAllMarkers(vis);
 
+    vis.wrangleData();
+
+}
 
 
 function removeAllMarkers(hey){

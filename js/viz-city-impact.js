@@ -51,14 +51,12 @@ var colorPopulation="rgb(50,50,50)";
 //SETUP AXIS///////////////////////////////////////////////////////////////////////////////////////////
 var formatNumber = d3.format(".0f");
 
-var xAxis = d3.svg.axis()
-        .orient("bottom")
-        .scale(x)
-    ;
+var xAxis = d3.svg.axis().orient("bottom").scale(x).ticks(10);
 
-var yAxis = d3.svg.axis().orient("left").scale(y).tickFormat(function(d){return d; });
+var yAxis = d3.svg.axis().orient("left").scale(y).tickFormat(function(d)  {return d; });
 var yAxis2 = d3.svg.axis().orient("left").scale(y3).tickFormat(function(d){return d; });
 var yAxis3 = d3.svg.axis().orient("left").scale(y2).tickFormat(function(d){return d; });
+
 
 svg3.append("g")
     .attr("class","y-axis axis")
@@ -82,6 +80,7 @@ svg3.append("g")
     //.style("color","rgb(200,200,200")
     .call(xAxis)
 ;
+
 
 svg3.append("text")
     .attr("id","y-axis label")
@@ -110,12 +109,22 @@ svg3.append("text")
 
 // INITIALIZE DATA////////////////////////////////////////////////////////////////////////////////////////
 dataImpactViz = myEventJSON;
-setTimeout(loadDataImpactViz,7000);
+setTimeout(loadDataImpactViz,9000);
 //loadDataImpactViz();
 
 //BOX SELECTION///////////////////////////////////////////////////////////////////////////////////////////
 d3.select("#data-type2").on("change", function () { updateImpactViz() });
 //d3.select("#btn-update").on("click", function() { updateVisualization() });
+
+
+//Tooltip Variable////////////////////////////////////////////////////////////////////////////////////////
+var tooltipEv;
+var tooltipEv1;
+var tooltipEv2;
+
+var avgPopularityByDate=[];
+var totalCapacityByDate=[];
+var totalEventsByDate=[];
 
 //LOAD DATA FUNCTION//////////////////////////////////////////////////////////////////////////////////////
 function loadDataImpactViz(){
@@ -139,9 +148,7 @@ function loadDataImpactViz(){
         }
         ArrayDates.push(ArrayOneDate);
     }
-    var avgPopularityByDate=[];
-    var totalCapacityByDate=[];
-    var totalEventsByDate=[];
+
 
     //Do the addition of Days, the avg of Popularity & get the Capacity
     for (var i=0; i<ArrayDates.length;i++){
@@ -178,16 +185,59 @@ function loadDataImpactViz(){
             totalCapacity:Capacity,
             event:ArrayDates[i]
         })
-    }
+
+    }//end of Loop
+
 
     data01=myJSONeventsByDate;
+
+    //
+    //TOOLTIP
+    tooltipEv = d3.tip().html(function(d) {return "Date : " + d.date + "\n" + "<b>" + "Total Events: " + d.totalEvents + "</b>";})
+        .attr("class", "d3-tip");
+    svg3.call(tooltipEv);
+
+    tooltipEv1 = d3.tip().html(function(d) {return  "Date : " + d.date + "\n" + "<b>" + "Avg. Popularity: "+(d.avgPopularity)+"</b>";})
+        .attr("class", "d3-tip");
+    svg3.call(tooltipEv1);
+
+    tooltipEv2 = d3.tip().html(function (d) {return "Date : " + d.date + "\n" + "<b>" + "Total Capacity: "+ d.totalCapacity + "</b>";})
+        .attr("class", "d3-tip");
+    svg3.call(tooltipEv2);
+
+    //Draw Visualization
     setTimeout(updateImpactViz,1000);
 
 } //FINISH DATA FUNCTION
 
 //DRAW & UPDATE VISUALIZATION /////////////////////////////////////////////////////////////////////////////
 function updateImpactViz(){
-    console.log(myJSONeventsByDate);
+    console.log("myJSONevents by Date: ", myJSONeventsByDate);
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+
+
+    /*var txtFile = "/data/test.txt";
+    var file = new File(txtFile,"write");
+    var json_string = JSON.stringify(myJSONeventsByDate);
+
+    log("opening file...");
+    file.open();
+    log("writing file..");
+    file.writeline(json_string);
+    file.close();*/
+
+/*    var txtFile = "/tmp/test.txt";
+    var file = new File(txtFile,"write");
+    var str = JSON.stringify(JsonExport);
+
+    log("opening file...");
+    file.open();
+    log("writing file..");
+    file.writeline(str);
+    file.close();*/
+
+   // var my_array = JSON.parse(json_string);
 
 
     //SELECTION IN BOX/////////////////////////////////////////////////////////////////////
@@ -214,11 +264,11 @@ function updateImpactViz(){
     //yShort.domain([valueShort,0]);
 
     x.domain(sortData01.map(function(d){return d.date;}));
-    y.domain([valueMaxEvents,0]);
-    y2.domain([valueMaxPop,0]);
+    y.domain([0,valueMaxEvents]);
+    y2.domain([0,valueMaxPop]);
     y3.domain([valueMaxCap,0]);
 
-    var xVariable=1;
+    var xVariable=1.5;
     var chartdowOffset=60;
 
     //BAR CHART////////////////////////////////////////////////////////////////////////////
@@ -235,30 +285,34 @@ function updateImpactViz(){
 //SANITATION BARS
     bars1.enter()
         .append("rect")
-        .attr("class", "bars01");
+        .attr("class", "bars01")
+        .on("mouseover",tooltipEv.show)
+        .on("mouseout", tooltipEv.hide);
     // .attr("fill", colorSanitation)
     //.attr("fill-opacity", opacityX)
 
     bars1.transition().duration(1500)
         .attr("x", function(d) { return x(d.date); })
         .attr("y", function(d) { return y(d.totalEvents); })
-        .attr("width", x.rangeBand()-5)
+        .attr("width", x.rangeBand()-2)
         //.attr("height",50)
         .attr("height", function(d) { return height22 - y(d.totalEvents); })
-        .attr("fill", colorPopulation)
+        .attr("fill", "rgb(255,0,20)"/*colorPopulation*/)
     ;
     bars1.exit().remove();
 
     //WATER BARS
     bars2.enter()
         .append("rect")
-        .attr("class", "bars02");
+        .attr("class", "bars02")
+        .on("mouseover",tooltipEv1.show)
+        .on("mouseout", tooltipEv1.hide);
 
 
     bars2.transition().duration(1500)
         .attr("x", function(d) { return x(d.date)+xVariable; })
         .attr("y", function(d) { return y2(d.avgPopularity); })
-        .attr("width", x.rangeBand()-5)
+        .attr("width", x.rangeBand()-2)
         //.attr("height",80)
         .attr("height", function(d) { return height22 - y2(d.avgPopularity); })
         .attr("fill", colorPopulation)
@@ -270,37 +324,56 @@ function updateImpactViz(){
     bars3.enter()
         .append("rect")
         .attr("class", "bars03")
+        .on("mouseover",tooltipEv2.show)
+        .on("mouseout", tooltipEv2.hide)
     ;
 
     bars3.transition().duration(1500)
         .attr("x", function(d) { return x(d.date); })
         .attr("y", height22+chartdowOffset)
-        .attr("width", x.rangeBand()-5)
+        .attr("width", x.rangeBand()-2)
         .attr("height", function(d) { return y3(d.totalCapacity); })
         .attr("fill", colorPopulation)
     ;
 
     bars3.exit().remove();
 
+    //TOOLTIP
+    //TOOLTIP
+    tooltipEv = d3.tip().html(function(d) {return "Date : " + d.date + "\n" + "<b>" + "Total Events: " + d.totalEvents + "</b>";})
+        .attr("class", "d3-tip");
+    svg3.call(tooltipEv);
+
+    tooltipEv1 = d3.tip().html(function(d) {return  "Date : " + d.date + "\n" + "<b>" + "Avg. Popularity: " + (d.avgPopularity) + " </b>";})
+        .attr("class", "d3-tip");
+    svg3.call(tooltipEv1);
+
+    tooltipEv2 = d3.tip().html(function (d) {return "Date : " + d.date + "\n" + "<b>" + "Total Capacity: "+ d.totalCapacity + "</b>";})
+        .attr("class", "d3-tip");
+    svg3.call(tooltipEv2);
+
+
+
 
     //UPDATE AXIS//////////////////////////////////////////////////////////////////////////
     svg3.select("g.x-axis").transition().duration(1500)
-        .attr("fill",function(d){
+        .attr("fill", function (d) {
             return "rgb(50,50,50)"
         })
         .call(xAxis)
-
-    svg3.selectAll("text")
-        .attr("y", 0)
-        .attr("x", 0)
-        //.attr("dy", "0em")
-        .attr("transform", "rotate(90) translate("+(chartdowOffset*0.25)+",-10)")
-        .style("text-anchor", "start")
+        .selectAll("text")
+            .attr("y", 0)
+            .attr("x", 0)
+            .attr("transform", "rotate(90) translate(" + (chartdowOffset * 0.25) + ",0)")
+            .style("text-anchor", "start")
     ;
+
+
     svg3.select("g.y-axis").transition().duration(1500).call(yAxis);
-    svg3.select("g.y-axis3")
+
+   /* svg3.select("g.y-axis3")
         .attr("transform", "translate("+1100+",0)")
-        .transition().duration(1500).call(yAxis3);
+        .transition().duration(1500).call(yAxis3);*/
 
     svg3.select("g.y-axis2").attr("transform","translate(0,"+(height22+chartdowOffset)+")")
         .transition().duration(1500)

@@ -115,12 +115,27 @@ function createTour() {
         element: document.getElementById('arcs'),
         projection: 'mercator',
         height: 800,
-        width: 1000,
+        width: 1200,
         fills: {
             // color of background map
-            defaultFill: 'rgb(220,220,220)',
+            defaultFill: 'rgb(230,230,230)',
+
             // color of bubble
-            bubbleColor: 'rgba(232,185,65,0.9)'
+            bubbleColor: 'rgba(255,20,7,0.9)'
+        },
+        geographyConfig: {
+            dataUrl: null, // If not null, datamaps will fetch the map JSON (currently only supports topojson)
+            hideAntarctica: false,
+            hideHawaiiAndAlaska : false,
+            borderWidth: 1,
+            borderOpacity: 1,
+            borderColor: '#FDFDFD',
+            popupOnHover: true, // True to show the popup while hovering
+            highlightOnHover: true,
+            highlightFillColor: 'rgb(200,200,200)',
+            highlightBorderColor: 'rgba(255,255,255)',
+            highlightBorderWidth: 5
+            //highlightBorderOpacity: 1
         },
         done: function(datamap) {
             datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
@@ -142,9 +157,9 @@ function createTour() {
     });
     TourTravel.arc(gigRoute, {
         arcSharpness: .9,
-        strokeWidth: 0.75,
-        strokeColor:'rgba(20,20,20,0.5)',
-        animationSpeed:2000
+        strokeWidth: 0.5,
+        strokeColor:'rgba(75,0,5,0.5)',
+        animationSpeed:8000
     });
 
     TourTravel.svg.call(d3.behavior.zoom()
@@ -156,15 +171,6 @@ function createTour() {
 };
 
 
-//
-// var kurbickFilms = [{name:"Day of the Fight", date: "1951-04-26", img: "http://upload.wikimedia.org/wikipedia/en/thumb/c/c4/Day_of_the_Fight_title.jpg/215px-Day_of_the_Fight_title.jpg"},
-//     {name:"The Seafarers", 	date:"1953-10-15", img: "http://upload.wikimedia.org/wikipedia/en/thumb/6/6c/Seafarers_title.jpg/225px-Seafarers_title.jpg"},
-//     {name:"Lolita (1962 film)", 	date:"1962-06-13", img: "http://upload.wikimedia.org/wikipedia/en/thumb/7/72/LolitaPoster.jpg/215px-LolitaPoster.jpg"},
-//     {name:"Fear and Desire", date:	"1953-03-31", img: "http://upload.wikimedia.org/wikipedia/en/f/f7/Fear_and_Desire_Poster.jpg"},
-//     {name:"Paths of Glory", date:	"1957-12-25", img: "http://upload.wikimedia.org/wikipedia/en/thumb/b/bc/PathsOfGloryPoster.jpg/220px-PathsOfGloryPoster.jpg"},
-//     {name:"A Clockwork Orange (film)", date:	"1971-12-19", img: "http://upload.wikimedia.org/wikipedia/en/thumb/4/48/Clockwork_orangeA.jpg/220px-Clockwork_orangeA.jpg"},
-//     {name:"Killer's Kiss", date:	"1955-09-28", img: "http://upload.wikimedia.org/wikipedia/en/thumb/a/a6/KillersKissPoster.jpg/220px-KillersKissPoster.jpg"}
-// ];
 
 // can get from musikki api?
 function drawTimeKnots() {
@@ -198,11 +204,7 @@ $.getJSON("http://api.songkick.com/api/3.0/search/artists.json?query="+searchBox
             .defer(d3.json,"http://api.songkick.com/api/3.0/artists/"+artistSKid+"/gigography.json?apikey="+Songkick_APIkey+"&min_date=2015-10-01&max_date=2016-10-01")
 
             .await(function(error,SKdataArtistGigo, SKdataLastYear){
-                // console.log("SK Artist Gigography");
-                // console.log(SKdataArtistGigo);
-                // console.log("SK Concerts Last Year");
-                // console.log(SKdataLastYear);
-                // bandConcertsLastYear=SKdataLastYear.resultsPage.totalEntries;
+
                 get_coordinate_tour(SKdataArtistGigo);
                 var x = get_bubble_data(SKdataArtistGigo);
                 console.log("bubble info");

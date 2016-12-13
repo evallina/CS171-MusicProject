@@ -3,7 +3,7 @@
  */
 
 
-var data;
+var data=[];
 /*
 var data = [
     { "name" : "ABC", "parent":"DEF", "relation": "ghi", "depth": 1 },
@@ -16,12 +16,14 @@ var data = [
 var workingJSON;
 var newJSON=[];
 function loadInitialData(){
+    workingJSON=[];
     workingJSON= myArtistJSON;
 
 }
 
 function loadDataTree() {
     loadInitialData();
+    var emptyArray=[];
     newJSON=[];
     //var workingJSON= myArtistJSON;
     console.log("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj", workingJSON);
@@ -75,13 +77,24 @@ function loadDataTree() {
             "relation": "null",
             "depth": 2
         })
-        newJSON.push({
-            "name": "TYPE: "+workingJSON.artistAlbums[i].type,
-            "parent": workingJSON.artistAlbums[i].albumName,
-            "relation": "null",
-            "depth": 3
-        })
-
+        //type
+        if(workingJSON.artistAlbums[i].type!=null) {
+            newJSON.push({
+                "name": "TYPE: " + workingJSON.artistAlbums[i].type,
+                "parent": workingJSON.artistAlbums[i].albumName,
+                "relation": "null",
+                "depth": 3
+            })
+        }
+        else{
+            newJSON.push({
+                "name": "TYPE: "+"n/a",
+                "parent": workingJSON.artistAlbums[i].albumName,
+                "relation": "null",
+                "depth": 3
+            })
+        }
+        //label
         if(workingJSON.artistAlbums[i].label!=null){
             newJSON.push({
                 "name": "LABEL: "+ workingJSON.artistAlbums[i].label.name,
@@ -98,24 +111,23 @@ function loadDataTree() {
                 "depth": 3
             })
         }
-
-
-        newJSON.push({
-            "name": "YEAR: "+workingJSON.artistAlbums[i].year,
-            "parent": workingJSON.artistAlbums[i].albumName,
-            "relation": "null",
-            "depth": 3
-        })
-
-        /*
-        for (var j = 0; j < workingJSON.artistAlbums[i].albumSongs.length; j++) {
+        //year
+        if(workingJSON.artistAlbums[i].year!=null) {
             newJSON.push({
-                "name": workingJSON.artistAlbums[i].albumSongs[j].songTitle,
-                "parent": "Songs",
+                "name": "YEAR: " + workingJSON.artistAlbums[i].year,
+                "parent": workingJSON.artistAlbums[i].albumName,
                 "relation": "null",
-                "depth": 2
+                "depth": 3
             })
-        }*/
+        }
+        else{
+            newJSON.push({
+                "name": "YEAR: " +"n/a",
+                "parent": workingJSON.artistAlbums[i].albumName,
+                "relation": "null",
+                "depth": 3
+            })
+        }
     }
 
     //GIGOGRAPHY BRANCH
@@ -128,30 +140,78 @@ function loadDataTree() {
 
     for (var i = GigsIndex; i < (GigsIndex+GigsRun); i++) {
 
-        newJSON.push({
-            "name": workingJSON.artistPastGigs[i].venueLocation,
-            "parent": "Gigography (Last Concerts)",
-            "relation": "null",
-            "depth": 2
-        })
-        newJSON.push({
-            "name": "DATE: "+workingJSON.artistPastGigs[i].date,
-            "parent": workingJSON.artistPastGigs[i].venueLocation,
-            "relation": "null",
-            "depth": 3
-        })
+        if (workingJSON.artistPastGigs[i] != null) {
+            if (workingJSON.artistPastGigs[i].venueLocation != null) {
+                newJSON.push({
+                    "name": workingJSON.artistPastGigs[i].venueLocation,
+                    "parent": "Gigography (Last Concerts)",
+                    "relation": "null",
+                    "depth": 2
+                })
+            }
 
-        newJSON.push({
-            "name": "VENUE: "+workingJSON.artistPastGigs[i].venueName,
-            "parent": workingJSON.artistPastGigs[i].venueLocation,
-            "relation": "null",
-            "depth": 3
-        })
+            else {
+                newJSON.push({
+                    "name": "n/a",
+                    "parent": "Gigography (Last Concerts)",
+                    "relation": "null",
+                    "depth": 2
+                })
+            }
+
+            if (workingJSON.artistPastGigs[i].date != null) {
+                newJSON.push({
+                    "name": "DATE: " + workingJSON.artistPastGigs[i].date,
+                    "parent": workingJSON.artistPastGigs[i].venueLocation,
+                    "relation": "null",
+                    "depth": 3
+                })
+            }
+
+            else {
+                newJSON.push({
+                    "name": "DATE: " + "n/a",
+                    "parent": workingJSON.artistPastGigs[i].venueLocation,
+                    "relation": "null",
+                    "depth": 3
+                })
+            }
+
+            if (workingJSON.artistPastGigs[i].venueName != null) {
+                newJSON.push({
+                    "name": "VENUE: " + workingJSON.artistPastGigs[i].venueName,
+                    "parent": workingJSON.artistPastGigs[i].venueLocation,
+                    "relation": "null",
+                    "depth": 3
+                })
+            }
+
+            else {
+                newJSON.push({
+                    "name": "VENUE: " + "n/a",
+                    "parent": workingJSON.artistPastGigs[i].venueLocation,
+                    "relation": "null",
+                    "depth": 3
+                })
+            }
+        }
+
+        else {
+            newJSON.push({
+                "name": "n/a",
+                "parent": "Gigography (Last Concerts)",
+                "relation": "null",
+                "depth": 2
+            })
+        }
+
+
+
 
     }
 
 data=newJSON;
-console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhh",data);
+//console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhh",data);
     treeVizUpdate();
 }
 
@@ -199,21 +259,43 @@ function treeVizUpdate() {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    root = treeData[0];
-    root.x0 = height / 2;
-    root.y0 = 0;
 
-    function collapse(d) {
-        if (d.children) {
-            d._children = d.children;
-            d._children.forEach(collapse);
-            d.children = null;
+   /* var jsonConvert=JSON.parse(treeData[0]);
+
+    d3.json(jsonConvert, function(error, flare) {
+        if (error) throw error;
+
+        root = flare;
+        root.x0 = height / 2;
+        root.y0 = 0;
+
+        function collapse(d) {
+            if (d.children) {
+                d._children = d.children;
+                d._children.forEach(collapse);
+                d.children = null;
+            }
         }
-    }
 
-    root.children.forEach(collapse);
-    update(root);
+        root.children.forEach(collapse);
+        update(root);
+    });*/
 
+
+
+        root = treeData[0];
+        root.x0 = height / 2;
+        root.y0 = 0;
+
+        function collapse(d) {
+            if (d.children) {
+                d._children = d.children;
+                d._children.forEach(collapse);
+                d.children = null;
+            }
+        }
+        root.children.forEach(collapse);
+        update(root);
 
     d3.select(self.frameElement).style("height", "800px");
 
